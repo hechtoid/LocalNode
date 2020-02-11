@@ -1,0 +1,21 @@
+{
+  "name": "localnode",
+  "version": "1.0.0",
+  "description": "My Local Node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "author": "hechtoid",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-ip": "^1.0.3",
+    "serve-index-sort-date": "^1.9.1"
+  }
+}
