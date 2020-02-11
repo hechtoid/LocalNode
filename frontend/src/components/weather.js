@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class weather extends React.Component {
+class weatherTele extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,9 +11,9 @@ class weather extends React.Component {
 
     componentDidMount() {
        // axios.get(`https://cors-anywhere.herokuapp.com/https://api.forecast.io/forecast/cf20d2bc8131e875da42c2f5f85d7282/37.7998,-122.4063?exclude=[,minutely,flags,]`)
-        axios.get(`/api/weather/tele`)
+        axios.get(`api/weather/tele`)
             .then(res => {
-                const weather = res.data;
+                const weather = res.data.data;
                 this.setState({ weather });
             })
     }
@@ -44,7 +44,8 @@ class weather extends React.Component {
 
         return (
 
-            <div className="App">
+            <div className="weather-tele">
+                WEATHER-TELE:<br></br>
                 <div className="hourly-holder">
                     {hourlies}
                 </div>
@@ -54,4 +55,4 @@ class weather extends React.Component {
     }
 
 }
-export default weather;
+export default weatherTele;

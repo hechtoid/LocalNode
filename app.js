@@ -17,6 +17,11 @@ app.get("/", function (req, res) {
   // res.sendStatus(304);
 })
 
+app.use(express.static('frontend/build'));
+app.get('/react', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+})
+
 app.use("/api/weather", weather);
 
 app.use(express.static(path.join(__dirname, 'static/weather/build')));
