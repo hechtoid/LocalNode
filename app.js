@@ -17,17 +17,12 @@ app.get("/", function (req, res) {
   // res.sendStatus(304);
 })
 
-app.use(express.static('frontend/build'));
-app.get('/react', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.get('/react/', (req, res) => {
+ res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 })
 
-app.use("/api/weather", weather);
-
-app.use(express.static(path.join(__dirname, 'static/weather/build')));
-app.get('/weather', function (req, res) {
-  res.sendFile(path.join(__dirname, 'static/weather/build', 'index.html'));
-});
+app.use("/react/api/weather", weather);
 
 app.use('/media', serveIndex(path.join(__dirname, 'media'), {'view' : 'details'}));
 app.use('/media', express.static(path.join(__dirname, 'media')));
