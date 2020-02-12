@@ -1,20 +1,24 @@
 import React from 'react';
-import Weather from './weather.js';
+import WeatherGeo from './weathergeo.js';
 import WeatherAdd from './weatheradd.js';
+import WeatherTemps from './weathertemps.js';
 
 
 function WeatherBox() {
 
-
-
-        return (
+    return (
+    <div className="weather-box">
+        <header>Weather Snippets</header> 
+            <br></br>
+            <WeatherAdd />
+            <br></br>
         <div className="weather-boxes">
-                <WeatherAdd />
-            <div className="weather-box-tele">
-                <Weather geo='37.7998,-122.4063'/>
-            </div>
+            {/* <WeatherGeo geo='37.7998,-122.4063'/> */}
+            <WeatherGeo />
+            <WeatherTemps />
         </div>
-        )
+    </div>
+    )
 
 
 

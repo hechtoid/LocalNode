@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import WeatherBox from './components/weatherbox.js'
 
 function App() {
   return (
     <div className="App">
-      <HashRouter>
+      <Router>
       <Route exact path="/weather" component={WeatherBox} />
-      </HashRouter>
+      </Router>
     </div>
   );
 }

@@ -45,7 +45,9 @@ router.get("/geo/:latlong?", (req, res) => {
     };
     getGeoWeather().then(data => {
         res.json({ data })
-    })
+    });
+    console.log(`SENDING weather FOR ${req.params.latlong}`);
+
 })
 
 module.exports = router;

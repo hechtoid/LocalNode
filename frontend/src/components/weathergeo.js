@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class Weather extends React.Component {
+class WeatherGeo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,23 +28,24 @@ class Weather extends React.Component {
                     <div className="hourly-item"
                         key={timestamp}
                     >
-                        {timestamp.getHours()} o'clock
+                        <span className="hour"> {timestamp.getHours()} </span> o'clock 
         <br></br>
-                        {hour.apparentTemperature} but actually {hour.temperature}.
+                        {hour.apparentTemperature} but {hour.temperature}.
         <br></br>
-                        {hour.summary}, {hour.precipProbability * 100}% chance of precipitation.
+                        {hour.summary}{hour.precipProbability === 0 ?  '' :`, ${hour.precipProbability * 100}% chance of precipitation.`}
+        <br></br>
       </div>
                 )
 
 
             })
         }
-        console.log(this.state.weather)
-
         return (
 
             <div className="weather-tele">
-                WEATHER-TELE:<br></br>
+                WEATHER-TELE:
+                <br></br>
+                <br></br>
                 <div className="hourly-holder">
                     {hourlies}
                 </div>
@@ -54,4 +55,4 @@ class Weather extends React.Component {
     }
 
 }
-export default Weather;
+export default WeatherGeo;
