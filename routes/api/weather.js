@@ -26,13 +26,14 @@ router.post("/spots", (req, res) => {
             console.error(err.message);
         }
     });
-    let name = req.query.name
-    let geocoords = req.query.geocoords
+    // console.log(req.body)
+    let name = req.body.name
+    let geocoords = req.body.geocoords
     let stmt = db.prepare("INSERT INTO spots VALUES (?,?)");
     stmt.run(name, geocoords)
     stmt.finalize()
     db.close();
-    res.json(name)
+    res.json(`INSERT ${name} INTO the weather database.`)
     console.log(`INSERT ${name} INTO the weather database.`);
 
 })

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 80
 const shell = require('shelljs')
+const bodyParser = require('body-parser');
 const path = require('path');
 const serveIndex = require('serve-index-sort-date');
 const expressip = require('express-ip');
@@ -16,6 +17,9 @@ app.get("/", function (req, res) {
   console.log(`${new Date().toUTCString()} ROOT ${req.ip} [${ipInfo.city}] accessed ROOT`);
   // res.sendStatus(304);
 })
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.get('/react/', (req, res) => {

@@ -1,18 +1,21 @@
 import React from 'react';
 import Weather from './weather.js';
+import WeatherAdd from './weatheradd.js';
 
-class WeatherBox extends React.Component{
 
-    render(){
+function WeatherBox() {
+
+
 
         return (
         <div className="weather-boxes">
+                <WeatherAdd />
             <div className="weather-box-tele">
-            <Weather geo='37.7998,-122.4063'/>
+                <Weather geo='37.7998,-122.4063'/>
             </div>
         </div>
         )
-    }
+
 
 
 }
