@@ -1,0 +1,2 @@
+mpc stop >/dev/null 2>&1
+
