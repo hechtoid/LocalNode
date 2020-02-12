@@ -14,9 +14,12 @@ function WeatherBox() {
             <br></br>
         <div className="weather-boxes">
             {/* <WeatherGeo geo='37.7998,-122.4063'/> */}
-            <WeatherGeo />
+            {/* <WeatherGeo /> */}
             <WeatherTemps />
         </div>
+
+            <a href="https://darksky.net/poweredby/"> Powered by Dark Sky</a>
+    
     </div>
     )
 

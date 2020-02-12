@@ -8,7 +8,7 @@ router.get("/spots", (req, res) => {
         if (err) {
             console.error(err.message);
         }
-        console.log('SELECT spots FROM the weather database.');
+        console.log('SELECT spots FROM the weather DataBase.');
     });
     let sql = `SELECT * FROM spots`;
     db.all(sql, [], (err, rows) => {
@@ -33,8 +33,8 @@ router.post("/spots", (req, res) => {
     stmt.run(name, geocoords)
     stmt.finalize()
     db.close();
-    res.json(`INSERT ${name} INTO the weather database.`)
-    console.log(`INSERT ${name} INTO the weather database.`);
+    res.json(`INSERT ${name} INTO the weather DataBase.`)
+    console.log(`INSERT ${name} INTO the weather DataBase.`);
 
 })
 
@@ -45,7 +45,7 @@ router.get("/geo/:latlong?", (req, res) => {
     };
     getGeoWeather().then(data => {
         res.json({ data })
-    });
+    }).catch();
     console.log(`SENDING weather FOR ${req.params.latlong}`);
 
 })
