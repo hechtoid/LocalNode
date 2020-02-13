@@ -21,14 +21,15 @@ class WeatherGeo extends React.Component {
     render() {
         let hourlies
         if (this.state.weather.hourly) {
+            let key = 0
             hourlies = this.state.weather.hourly.data.map(hour => {
                 let timestamp = new Date(0)
                 timestamp.setUTCSeconds(hour.time)
                 return (
                     <div className="hourly-item"
-                        key={timestamp}
+                        key={key++}
                     >
-                        <span className="hour"> {timestamp.getHours()} </span> o'clock 
+                        <span className="hour"> {timestamp.getHours()} </span> o'clock
         <br></br>
                         {hour.apparentTemperature} but {hour.temperature}.
         <br></br>
