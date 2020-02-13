@@ -1,53 +1,54 @@
-const express = require("express");
-const router = express.Router();
 const axios = require("axios");
 const sqlite3 = require('sqlite3').verbose();
 
-router.get("/spots", (req, res) => {
-    let db = new sqlite3.Database('./db/weather.db', (err) => {
+const nth = function (d) {
+    if (d > 3 && d < 21) return 'th';
+    switch (d % 10) {
+        case 1: return "st";
+        case 2: return "nd";
+        case 3: return "rd";
+        default: return "th";
+    }
+}
+
+function weathercron() {   let db = new sqlite3.Database('./db/weather.db', (err) => {
         if (err) {
             console.error(err.message);
         }
-        console.log('SELECT spots FROM the weather DataBase.');
     });
+    let spots = []
     let sql = `SELECT * FROM spots`;
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
         }
-        res.json(rows)
-    });
+        rows.forEach(el => {
+            axios.get(`https://api.forecast.io/forecast/cf20d2bc8131e875da42c2f5f85d7282/${el.geocoords}?exclude=[,currently,hourly,minutely,flags,])`)
+            .then(data => {
+                let week = {}
+                data.data.daily.data.forEach(el => {
+                    let timestamp = new Date(0)
+                    timestamp.setUTCSeconds(el.apparentTemperatureHighTime)
+                    timestring = `${timestamp.toLocaleTimeString()} on the ${timestamp.getDate()}${nth(timestamp.getDate())}`
+                    week[timestring] = el.apparentTemperatureHigh
+                })
+                spots.push(`UPDATE spots SET weeklies = ${JSON.stringify(week)} WHERE name LIKE ${el.name}`);
+                console.log(spots)
+            })
+        });
+    })
+    // spots.forEach(el =>{
+    //     console.log(el)
+    //     let stmt = db.prepare(el)
+    //     stmt.run()
+    //     stmt.finalize()
+    // })
+
+
+
     db.close();
-})
 
-router.post("/spots", (req, res) => {
-    let db = new sqlite3.Database('./db/weather.db', (err) => {
-        if (err) {
-            console.error(err.message);
-        }
-    });
-    // console.log(req.body)
-    let name = req.body.name
-    let geocoords = req.body.geocoords
-    let stmt = db.prepare("INSERT INTO spots VALUES (?,?)");
-    stmt.run(name, geocoords)
-    stmt.finalize()
-    db.close();
-    res.json(`INSERT ${name} INTO the weather DataBase.`)
-    console.log(`INSERT ${name} INTO the weather DataBase.`);
+    
+}
 
-})
-
-router.get("/geo/:latlong?", (req, res) => {
-    const getGeoWeather = () => {
-        let url = `https://api.forecast.io/forecast/cf20d2bc8131e875da42c2f5f85d7282/${req.params.latlong}?exclude=[,minutely,flags,])`;
-        return axios.get(url).then(response => response.data);
-    };
-    getGeoWeather().then(data => {
-        res.json({ data })
-    }).catch();
-    console.log(`SENDING weather FOR ${req.params.latlong}`);
-
-})
-
-module.exports = router;
+module.exports = weathercron
