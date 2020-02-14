@@ -27,19 +27,20 @@ class Sansome extends React.Component {
         if (this.state.buss){
             let key = 0 
             busss = this.state.buss.map(bus => {
-                if (bus.MonitoredVehicleJourney.LineRef===4){
+                if (bus.MonitoredVehicleJourney.LineRef==='4'){
                 return (
                     <div className="bus" key={key++}>
-                        {bus.MonitoredVehicleJourney.LineRef} => {bus.MonitoredVehicleJourney.DestinationName}
+                        <span className="line">{bus.MonitoredVehicleJourney.LineRef}</span> => {bus.MonitoredVehicleJourney.DestinationName}
                         <br></br>
-                        {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)} => {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}
+                        <span className="aimed">{this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)}</span> => <span className="expected">{this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}</span>
                     </div>
                 )
             }
             })   
         }
         return (
-            <div className="Buss">
+            <div className="buss">
+                Sansome
                 {busss}
             </div>
         );

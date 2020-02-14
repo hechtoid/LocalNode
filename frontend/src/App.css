@@ -21,13 +21,37 @@
     margin: 5px;
 }
 
+.transit{
+    font-family: sans-serif;
+    display: flex;
+    width: 90%;
+    
+}
 .buss{
-
+    border: 1px solid black;
+    border-radius: 3px;
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+}
+.small{
+    width: 33%;
+    margin-right: 20px;
+}
+.big{
+    width: 66%;
+    display: flex;
 }
 .bus{
     margin: 5px;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 3px;
-    padding: 1px;
-    width: 400px;
+    padding: 5px;
+    width: 90%;
+}
+.line{
+    font-weight: 900;
+}
+.expected{
+    font-weight: 900;
 }

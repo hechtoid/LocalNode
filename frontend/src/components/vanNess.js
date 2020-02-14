@@ -25,20 +25,21 @@ class VanNess extends React.Component {
 
     render() {
         let busss
-        if (this.state.VanNess){
+        if (this.state.buss){
             let key = 0
-            busss = this.state.VanNess.map(bus=>{
+            busss = this.state.buss.map(bus=>{
                 return(
                     <div className="bus" key={key++}>
-                        {bus.MonitoredVehicleJourney.LineRef} => {bus.MonitoredVehicleJourney.DestinationName}
+                        <span className="line">{bus.MonitoredVehicleJourney.LineRef}</span> => {bus.MonitoredVehicleJourney.DestinationName}
                         <br></br>
-                        {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)} => {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}
+                        <span className="aimed">{this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)}</span> => <span className="expected">{this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}</span>
                     </div>
                 )
             })    
         }
         return (
-            <div className="Buss">
+            <div className="buss">
+                Van Ness
                 {busss}
             </div>
         );
