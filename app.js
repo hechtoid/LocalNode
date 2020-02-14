@@ -45,7 +45,7 @@ app.get('/weathercron/', (req, res) => {
   weathercron()
 })
 
-app.use('/media', serveIndex(path.join(__dirname, 'media'), {'view' : 'details'}));
+app.use('/media', serveIndex(path.join(__dirname, 'media'), {'view' : 'details'}))
 app.use('/media', express.static(path.join(__dirname, 'media')));
 
 

@@ -55,3 +55,10 @@
 .expected{
     font-weight: 900;
 }
+.stop{
+    width: 50%;
+    margin: 2%;
+}
+input{
+    margin: 5px;
+}

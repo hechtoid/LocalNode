@@ -25,14 +25,14 @@ function weathercron() {   let db = new sqlite3.Database('./db/weather.db', (err
         rows.forEach(el => {
             axios.get(`https://api.forecast.io/forecast/cf20d2bc8131e875da42c2f5f85d7282/${el.geocoords}?exclude=[,currently,hourly,minutely,flags,])`)
             .then(data => {
-                let week = {}
+                let week = []
                 data.data.daily.data.forEach(el => {
                     let timestamp = new Date(0)
                     timestamp.setUTCSeconds(el.apparentTemperatureHighTime)
                     timestring = `${timestamp.toLocaleTimeString()} on the ${timestamp.getDate()}${nth(timestamp.getDate())}`
-                    week[timestring] = el.apparentTemperatureHigh
+                    week.push(el.apparentTemperatureHigh + '° @ ' + timestring)
                 })
-                spots.push(`UPDATE spots SET weeklies = ${JSON.stringify(week)} WHERE name LIKE ${el.name}`);
+                spots.push(`UPDATE spots SET weeklies = "${JSON.stringify(week)}" WHERE name LIKE ${el.name}`);
                 console.log(spots)
             })
         });
