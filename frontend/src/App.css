@@ -25,22 +25,45 @@
     font-family: sans-serif;
     display: flex;
     width: 90%;
-    
+    margin: 5px;
+}
+.transit-switcher{
+    display: flex;
+}
+.transit-switch-on{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 15px;
+    width: 100px;
+    margin: 10px;
+    /* color: blue; */
+}
+.transit-switch-off{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 15px;
+    width: 100px;
+    margin: 10px;
+    color: gray;
+}
+.transit-switch-off:hover{
+    cursor: pointer;
+}
+.transit-on{
+    display: flex;
+    width: 100%;
+}
+.transit-off{
+    display: none;
 }
 .buss{
     border: 1px solid black;
     border-radius: 3px;
     margin: 5px;
     padding: 5px;
-    width: 100%;
-}
-.small{
     width: 33%;
-    margin-right: 20px;
-}
-.big{
-    width: 66%;
-    display: flex;
 }
 .bus{
     margin: 5px;
