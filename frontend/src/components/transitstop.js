@@ -66,6 +66,8 @@ class TransitStop extends React.Component {
         }
         return (
             <div className = "stop" >
+            <div className="stop-left">
+
             <form onSubmit={this.handleSubmit}>
                 <input type="text"
                     value={this.state.agency}
@@ -82,8 +84,11 @@ class TransitStop extends React.Component {
                 <input type="submit" value="Update" />
                 <br></br>
             </form>
+            </div>
+            <div className="stop-right">
                 { stop }
                 { busss }
+            </div>
             </div>
         );
     }

@@ -20,33 +20,42 @@
 .spot{
     margin: 5px;
 }
-
+.transit-master{
+    border: 1px solid black;
+}
 .transit{
     font-family: sans-serif;
     display: flex;
-    width: 90%;
-    margin: 5px;
+    width: 100%;
+    /* margin-left: 10px; */
 }
 .transit-switcher{
     display: flex;
+    /* margin-left: 15px; */
+    width: 100%;
 }
 .transit-switch-on{
     padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
+    /* border-top: 1px solid black; */
+    /* border-left: 1px solid black; */
+    border-right: 1px solid black;
+    border-radius: 2px;
     height: 15px;
-    width: 100px;
-    margin: 10px;
-    /* color: blue; */
+    width: 75px;
+    /* margin-left: 10px; */
+    background-color: lightgray;
+    color: green;
 }
 .transit-switch-off{
     padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
+    /* border-top: 1px solid black; */
+    /* border-left: 1px solid black; */
+    border-right: 1px solid black;
+    border-radius: 2px;
     height: 15px;
-    width: 100px;
-    margin: 10px;
-    color: gray;
+    width: 75px;
+    /* margin-left: 10px; */
+    color: black;
 }
 .transit-switch-off:hover{
     cursor: pointer;
@@ -54,6 +63,10 @@
 .transit-on{
     display: flex;
     width: 100%;
+    background-color: lightgray;
+    /* border: 1px solid black; */
+    border-radius: 2px;
+    padding: 5px;
 }
 .transit-off{
     display: none;
@@ -79,8 +92,13 @@
     font-weight: 900;
 }
 .stop{
-    width: 50%;
+    width: 100%;
     margin: 2%;
+    display: flex;
+}
+.stop-right{
+    margin-left: 10px;
+    width: 100%;
 }
 input{
     margin: 5px;
