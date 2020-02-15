@@ -45,6 +45,11 @@ app.get('/weathercron/', (req, res) => {
   weathercron()
 })
 
+app.use('/media', function (req, res, next){
+  const ipInfo = req.ipInfo;
+  console.log(`${new Date().toUTCString()} MEDIA ${req.ip} [${ipInfo.city}] accessed ${req.originalUrl}`);
+  next()
+})
 app.use('/media', serveIndex(path.join(__dirname, 'media'), {'view' : 'details'}))
 app.use('/media', express.static(path.join(__dirname, 'media')));
 
