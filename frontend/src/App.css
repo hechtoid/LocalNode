@@ -111,3 +111,13 @@
 input{
     margin: 5px;
 }
+.agency{
+    margin: 3px;
+}
+.agency-id{
+    font-weight: 900;
+}
+.agency-full-name{
+    /* font-style: oblique; */
+    color: gray;
+}

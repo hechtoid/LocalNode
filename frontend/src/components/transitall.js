@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
-class TransitStop extends React.Component {
+class TransitAll extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             stopCode: '16513',
             agency: 'SF',
-            buss: []
+            buss: [],
+            agencies: []
         }
         this.dateParser=this.dateParser.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,18 +16,18 @@ class TransitStop extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${this.state.stopCode}`)
+        axios.get(`http://api.511.org/transit/operators?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON`)
         .then(res => {
-            // console.log(res.data)
-            let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
-            this.setState({ buss });
+            console.log(res.data)
+            let agencies = res.data;
+            this.setState({ agencies });
         })
     }
 
     handleSubmit(e) {
         axios.get(`http://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${this.state.stopCode}`)
             .then(res => {
-                // console.log(res.data)
+                console.log(res.data)
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                 this.setState({ buss });
             })
@@ -51,6 +52,16 @@ class TransitStop extends React.Component {
     render() {
         let busss
         let stop
+        let agencies
+        if (this.state.agencies){
+            agencies = this.state.agencies.map(agency => {
+                return (
+                    <div className="agency" key={agency.Id}>
+                        {agency.Id} - {agency.ShortName?agency.ShortName:agency.Name} <span className='agency-full-name'>{agency.ShortName&&agency.ShortName!==agency.Name?`(${agency.Name})`:''}</span>
+                    </div>
+                )
+            })
+        }
         if (this.state.buss){
             let key = 0 
             busss = this.state.buss.map(bus => {
@@ -65,8 +76,9 @@ class TransitStop extends React.Component {
             })   
         }
         return (
-            <div className = "stop" >
-            <div className="stop-left">
+            <div className = "transit-all" >
+                {agencies}
+            {/* <div className="stop-left">
                 Agency ShortList:
                 <br></br>
                 <select
@@ -102,10 +114,10 @@ class TransitStop extends React.Component {
             <div className="stop-right">
                 { stop }
                 { busss }
-            </div>
+            </div> */}
             </div>
         );
     }
 
 }
-export default TransitStop;
+export default TransitAll;
