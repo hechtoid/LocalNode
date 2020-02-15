@@ -67,13 +67,21 @@ class TransitStop extends React.Component {
         return (
             <div className = "stop" >
             <div className="stop-left">
-
-            <form onSubmit={this.handleSubmit}>
-                <input type="text"
+                Agency Select:
+                <br></br>
+                <select
+                    className="agency-select"
                     value={this.state.agency}
                     onChange={this.updateAgency()}
-                    placeholder="transit agency"
-                />
+                >
+                <option selected value="SF">SF Muni</option>
+                <option selected value="GG">Golden Gate Transit</option>
+                <option selected value="AC">AC Transit</option>
+                <option selected value="MA">Marin Transit</option>
+                <option selected value="SR">Santa Rosa Citybus</option>
+                <option selected value="SO">Sonoma County Transit</option>
+            </select>
+            <form onSubmit={this.handleSubmit}>
                 <br></br>
                 <input type="text"
                     value={this.state.stopCode}
