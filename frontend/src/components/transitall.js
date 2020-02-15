@@ -14,7 +14,9 @@ class TransitAll extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
-
+// http://api.511.org/transit/stopPlaces?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&operator_id=SF
+// http://api.511.org/transit/stops?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&operator_id=SF
+// 
     componentDidMount() {
         axios.get(`http://api.511.org/transit/operators?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON`)
         .then(res => {
@@ -56,9 +58,9 @@ class TransitAll extends React.Component {
         if (this.state.agencies){
             agencies = this.state.agencies.map(agency => {
                 return (
-                    <div className="agency" key={agency.Id}>
-                        {agency.Id} - {agency.ShortName?agency.ShortName:agency.Name} <span className='agency-full-name'>{agency.ShortName&&agency.ShortName!==agency.Name?`(${agency.Name})`:''}</span>
-                    </div>
+                        <option value={agency.Id}> 
+ {agency.ShortName?agency.ShortName:agency.Name} {agency.ShortName&&agency.ShortName!==agency.Name?`(${agency.Name})`:''}
+                         </option> 
                 )
             })
         }
@@ -76,8 +78,23 @@ class TransitAll extends React.Component {
             })   
         }
         return (
-            <div className = "transit-all" >
-                {agencies}
+        <div className = "transit-all" >
+            <div className="left">
+                Select Agency:
+                <br></br>
+                <select
+                    className="agency-select"
+                    value={this.state.agency}
+                    onChange={this.updateAgency()}
+                >
+                    {agencies}
+                </select>
+                <br></br>
+                Agency Code: 
+                <span className="agency-code">
+                    {this.state.agency}
+                </span>
+            </div>
             {/* <div className="stop-left">
                 Agency ShortList:
                 <br></br>
@@ -115,7 +132,7 @@ class TransitAll extends React.Component {
                 { stop }
                 { busss }
             </div> */}
-            </div>
+        </div>
         );
     }
 
