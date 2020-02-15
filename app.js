@@ -34,9 +34,9 @@ app.use("/react/api/weather", weather);
 // for when running local react dev server
 app.use("/api/weather", weather);
 
-cron.schedule('* 0,30 * * * *', () => {
-  weathercron
-})
+// cron.schedule('* 0,30 * * * *', () => {
+//   weathercron
+// })
 
 app.get('/mpcstop/', (req, res) => {
  shell.exec('./cgi/mpcstop')

@@ -43,7 +43,7 @@
     padding: 10px;
     /* border-top: 1px solid black; */
     /* border-left: 1px solid black; */
-    border-right: 1px solid black;
+    border-right: 2px solid black;
     height: 15px;
     width: 75px;
     /* margin-left: 10px; */
@@ -54,7 +54,7 @@
     padding: 10px;
     /* border-top: 1px solid black; */
     /* border-left: 1px solid black; */
-    border-right: 1px solid black;
+    border-right: 2px solid black;
     /* border-radius: 2px; */
     height: 15px;
     width: 75px;
@@ -95,34 +95,33 @@
 .expected{
     font-weight: 900;
 }
-.agency-select{
-    margin-bottom: 10px;
-    margin-top: 10px
-}
 .stop{
     width: 100%;
     margin: 2%;
     display: flex;
 }
+.stop-left{
+    width: 100%;
+}
 .stop-right{
     margin-left: 10px;
     width: 100%;
 }
-input{
-    margin: 5px;
-}
-.agency{
-    margin: 3px;
-}
-.agency-id{
-    font-weight: 900;
-}
-.agency-full-name{
-    /* font-style: oblique; */
-    color: gray;
+.agency-select{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 350px;
+    margin-left: 10px;
 }
 .agency-code{
     font-weight: 900;
     margin: 10px;
     font-size: 23px;
+}
+input[type="radio"]{
+    margin: 10px;
+}
+.stop-id{
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

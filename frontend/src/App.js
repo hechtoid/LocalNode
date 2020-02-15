@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import { HashRouter as Router, Route } from 'react-router-dom';
-import WeatherBox from './components/weatherbox'
-import Transit from './components/transit'
-import TransitStop from './components/transitstop'
-import TransitAll from './components/transitall'
+import WeatherBox from './components/weather/weatherbox'
+import Transit from './components/transit/transit'
+import TransitStop from './components/transit/transitstop'
+import TransitAll from './components/transit/transitall'
 
 function App() {
   return (
