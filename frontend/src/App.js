@@ -7,6 +7,7 @@ import TransitStop from './components/transit/transitstop'
 import TransitAll from './components/transit/transitall'
 
 function App() {
+  document.title="react511"
   return (
     <div className="App">
       <Router>

@@ -147,6 +147,8 @@
     margin-top: 5px;
     width: 123px;
     margin-left: 5px;
+    height: 25px;
+
 }
 .agency-code{
     font-weight: 900;
@@ -165,5 +167,13 @@ label input[type="radio"]{
     width: 100px;
 }
 .load-stops{
-    border: 1px solid red;
+    height: 25px;
+    margin-left: 5px;
+}
+.stop-select{
+    width: 234px;
+    margin-left: 5px;
+}
+.slow{
+    font-size: 11px;
 }
