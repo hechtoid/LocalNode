@@ -14,11 +14,9 @@ class TransitAll extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
-// http://api.511.org/transit/stopPlaces?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&operator_id=SF
-// http://api.511.org/transit/stops?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&operator_id=SF
-// 
+
     componentDidMount() {
-        axios.get(`http://api.511.org/transit/operators?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON`)
+        axios.get(`https://api.511.org/transit/operators?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON`)
         .then(res => {
             console.log(res.data)
             let agencies = res.data;
@@ -27,7 +25,7 @@ class TransitAll extends React.Component {
     }
 
     handleSubmit(e) {
-        axios.get(`http://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${this.state.stopCode}`)
+        axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${this.state.stopCode}`)
             .then(res => {
                 console.log(res.data)
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
