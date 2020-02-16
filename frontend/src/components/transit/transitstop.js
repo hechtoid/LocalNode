@@ -48,6 +48,8 @@ class TransitStop extends React.Component {
             })
     }
 
+    //http://api.511.org/transit/stoptimetable?api_key={your-key}&MonitoringRef=13008&OperatorRef=SF
+
     dateParser(zulu){
         return new Date(Date.parse(zulu)).toLocaleTimeString()
     }
