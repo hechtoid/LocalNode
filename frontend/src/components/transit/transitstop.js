@@ -155,9 +155,18 @@ class TransitStop extends React.Component {
                 stop = bus.MonitoredVehicleJourney.MonitoredCall.StopPointName
                 return (
                     <div className="bus" key={key++}>
-                        <span className="line">{bus.MonitoredVehicleJourney.LineRef}</span> => {bus.MonitoredVehicleJourney.DestinationName}
+                        <span className="line">
+                            {this.state.agency==='BA' 
+                            ? bus.MonitoredVehicleJourney.MonitoredCall.OriginName 
+                            : bus.MonitoredVehicleJourney.LineRef}
+                        </span> => {bus.MonitoredVehicleJourney.DestinationName}
                         <br></br>
-                        <span className="aimed">{this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)}</span> => <span className="expected">{this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}</span>
+                        <span className="aimed">
+                            {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)}
+                        </span> => <span 
+                        className="expected">
+                            {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}
+                        </span>
                     </div>
                 )
             })   
@@ -226,7 +235,7 @@ class TransitStop extends React.Component {
             </form>
             </div>
             <div className="stop-right">
-                { stop }
+                <span className="stop-title">{ stop } </span>
                 { busss }
             </div>
             </div>
