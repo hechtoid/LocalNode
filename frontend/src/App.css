@@ -126,10 +126,7 @@ img.five-eleven{
     padding: 10px;
     width: 90%;
 }
-.line{
-    font-weight: 900;
-}
-.expected{
+.bold{
     font-weight: 900;
 }
 .stop{
