@@ -79,12 +79,12 @@ class TransitStop extends React.Component {
     }
     updateStopFilter() {
         return e => {
-            // if (e.currentTarget.value.length === 0){
-            //     this.setState({
-            //         stopFilter: e.currentTarget.value,
-            //         stopsFiltered: this.state.stops
-            //     })
-            // }
+            if (e.currentTarget.value.length === 0){
+                this.setState({
+                    stopFilter: '',
+                    stopsFiltered: this.state.stops
+                })
+            }
             if (e.currentTarget.value.length < 2){
                 this.setState({
                     stopFilter: e.currentTarget.value,
@@ -191,7 +191,8 @@ class TransitStop extends React.Component {
                 <br></br>
             <select
                 className="stop-select"
-                onChange={this.updateStop()}
+                // onChange={this.updateStop()}
+                onMouseDown={this.updateStop()}
             >
                 {stops}
             </select>            
