@@ -7,7 +7,7 @@ import Broadway from './broadway';
 import TransitStop from './transitstop';
 
 function Transit() {
-  let [pane, setPane] = useState('marin');
+  let [pane, setPane] = useState('user');
   return (
     <div className="transit-master">
       <div className="transit-switcher">
@@ -15,6 +15,7 @@ function Transit() {
         <div id='marin' className={pane === 'marin' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('marin')}>MARIN</div>
         <div className={pane === 'frisco' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('frisco')}>FRISCO</div>
         <div className={pane === 'user' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('user')}>USER</div>
+
       </div>
     <div className="transit">
         <div className={pane === 'marin' ? 'transit-on' : 'transit-off'} >
