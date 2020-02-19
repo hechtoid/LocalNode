@@ -178,17 +178,24 @@ class TransitStop extends React.Component {
     render() {
         let slow
             if (this.state.loaded && !this.state.stops[0]){
-            slow = <div>Loading.....Muni and VTA have ~3500 stops,<br></br>ACTransit more than 5000.</div>
-            }else{
-            slow = <div>
-                    Loaded <span className="bold">
-                    {this.state.loaded 
-                        && this.state.stops[0]
-                        ? this.state.stops.length
-                        : '∅'
-                    }
-                    </span> stops.
-                </div>
+                slow = <div>Loading.....Muni and VTA have ~3500 stops,<br></br>ACTransit more than 5000.</div>
+            }
+            else if (this.state.loaded && this.state.stops[0] && this.state.stopFilter){
+                slow = <div>
+                        Loaded <span className="bold">
+                        {this.state.stops.length}
+                        </span> stops.<br></br>
+                        <span className="bold">
+                            {this.state.stopsFiltered.length}
+                        </span> in Filter.
+                    </div>
+            } 
+            else if (this.state.loaded && this.state.stops[0]){
+                slow = <div>
+                        Loaded <span className="bold">
+                        {this.state.stops.length}
+                        </span> stops.<br></br>
+                    </div>
             }
         let busss = <div className="bus">
             No Tracked Vehicles to show. 
@@ -208,7 +215,6 @@ class TransitStop extends React.Component {
             })
         }
         if (this.state.stopsFiltered){
-            //
             let key = 0
             stops = this.state.stopsFiltered.map(stop => {
                 return (
