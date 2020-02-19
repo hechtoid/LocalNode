@@ -105,7 +105,8 @@ class TransitStop extends React.Component {
                         console.log(stop)
                         this.setState({
                             stopCode: e.currentTarget.value,
-                            stopsFiltered: [stop], 
+                            stopsFiltered: this.state.stops, 
+                            // stopFilter: stop.Name,
                             stopFilter: '',
                             stop          
                         })
@@ -126,7 +127,8 @@ class TransitStop extends React.Component {
                         console.log(stop)
                         this.setState({
                             stopCode: e.currentTarget.value,
-                            stopsFiltered: [stop], 
+                            stopsFiltered: this.state.stops, 
+                            // stopFilter: stop.Name,
                             stopFilter: '',
                             stop          
                         })
@@ -343,15 +345,16 @@ class TransitStop extends React.Component {
                     className="stop-filter"
                     onChange={this.updateStopFilter()}
                     disabled={!this.state.loaded}
-                    placeholder={this.state.stopsFiltered[0]?"Live Filter (BackSpace RePopulates StopList)":"No Stops Loaded"}
+                    placeholder={this.state.stopsFiltered[0]?"Live Filter by Stop Name":"No Stops Loaded"}
                 />
                 <br></br>
             <select
                 disabled={!this.state.stopsFiltered[0]}
                 className="stop-select"
                 onChange={this.updateStop()}
-                onMouseDown={this.updateStop()}
-            >
+                onMouseDown={this.updateStop()}               
+                >
+                {/* <option selected disabled>{this.state.stop.id ? this.state.stop.Name+' '+this.state.stop.id:this.state.stop.Name}</option> */}
                 {stops}
             </select>            
             <div className="stop-info">
