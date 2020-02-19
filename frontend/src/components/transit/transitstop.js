@@ -150,12 +150,11 @@ class TransitStop extends React.Component {
             }
         }
     }
-
     render() {
         let busss = <div className="bus">
-            No Tracked Vehicles. 
+            No Tracked Vehicles to show. 
             <br></br>
-            Update Above, or check the schedule.
+            <span className='update' onClick={this.loadBusss}>Check again</span>, check your inputs, or check the schedule.
         </div>
         let stop
         let stops
@@ -278,19 +277,18 @@ class TransitStop extends React.Component {
             >
                 {stops}
             </select>            
-            <form onSubmit={this.loadBusss}>
+            <br></br>
+            {/* <form onSubmit={this.loadBusss}> */}
                 Stop ID:
                 <input type="text"
                     value={this.state.stopCode}
                     onChange={this.updateStopCode()}
                     className="stop-id"
                 />
-                <input type="submit" value="Update Arrivals" />
-                <br></br>
-            </form>
-            </div>
-            <div className="stop-right">
+                {/* <input type="submit" value="Update Arrivals" /> */}
+            {/* </form> */}
                 <span className="stop-title">{ stop } </span>
+                <br></br>
                 { busss }
             </div>
             </div>
