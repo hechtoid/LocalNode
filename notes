@@ -4,6 +4,6 @@ use schedules
 
 add map/GPS
 
-update stopCode if filter.length===1
+#update stopCode if filter.length===1
 
-update stop object by stop code
+#update stop object by stop code
