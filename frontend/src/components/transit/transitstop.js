@@ -124,11 +124,11 @@ class TransitStop extends React.Component {
     updateStop() {
         return e => {
             let stop = this.state.stopsFiltered[e.currentTarget.value]
-            this.setState({
-            stopCode: stop.id,
-            stop 
-        })
-        console.log(stop)
+                this.setState({
+                    stopCode: stop.id,
+                    stop 
+                })
+            console.log(stop)
             axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stop.id}`)
             .then(res => {
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
@@ -304,8 +304,6 @@ class TransitStop extends React.Component {
                 className="stop-select"
                 onChange={this.updateStop()}
                 onMouseDown={this.updateStop()}
-                placeholder="No Stops Loaded"
-                // onClick={this.updateStop()}
             >
                 {stops}
             </select>            
