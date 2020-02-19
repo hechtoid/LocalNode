@@ -151,7 +151,7 @@ class TransitStop extends React.Component {
             else if (e.currentTarget.value.length >= 2){
                 let stopsFiltered = this.state.stopsFiltered.filter(stop => stop.Name.toLowerCase().includes(e.currentTarget.value.toLowerCase()))
                     this.setState({
-                        // stopFilter: stopsFiltered.length>0?e.currentTarget.value:'',
+                        // stopFilter: stopsFiltered.length>0?e.currentTarget.value:'NO STOPS FOUND',
                         // stopsFiltered: stopsFiltered.length>0?stopsFiltered:this.state.stops
                         stopFilter: e.currentTarget.value,
                         stopsFiltered
