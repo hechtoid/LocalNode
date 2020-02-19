@@ -1,0 +1,9 @@
+multiple names with .every?
+
+use schedules
+
+add map/GPS
+
+update stopCode if filter.length===1
+
+update stop object by stop code
