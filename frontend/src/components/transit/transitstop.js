@@ -87,12 +87,12 @@ class TransitStop extends React.Component {
                     stopsFiltered: this.state.stops
                 })
             }
-            else if (e.currentTarget.value.length === 0){
-                this.setState({
-                    stopFilter: '',
-                    stopsFiltered: this.state.stops
-                })
-            }
+            // else if (e.currentTarget.value.length === 0){
+            //     this.setState({
+            //         stopFilter: '',
+            //         stopsFiltered: this.state.stops
+            //     })
+            // }
             else if (e.currentTarget.value.length === 1){
                 this.setState({
                     stopFilter: e.currentTarget.value,
@@ -108,12 +108,14 @@ class TransitStop extends React.Component {
             }  
             else if (e.currentTarget.value.length >= 2){
                 let filtered = this.state.stopsFiltered.filter(stop => stop.Name.toLowerCase().includes(e.currentTarget.value.toLowerCase()))
-                this.setState({
-                    stopFilter: e.currentTarget.value,
-                    stopsFiltered: filtered //? filtered : this.state.stops
-                })
+                    this.setState({
+                        stopFilter: e.currentTarget.value,
+                        stopsFiltered: filtered,
+                        stop: filtered[0]?filtered[0]:{},
+                        stopCode: filtered[0]?filtered[0].id:''
+                    })
             }
-    }
+        }
     }
 
     render() {
