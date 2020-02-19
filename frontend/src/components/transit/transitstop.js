@@ -62,13 +62,32 @@ class TransitStop extends React.Component {
         return new Date(Date.parse(zulu)).toLocaleTimeString()
     }
     updateStopCode() {
-        return e => this.setState({
-            stopCode: e.currentTarget.value
-        })
+        return e => {
+            let stop = this.state.stops.filter(stop=>stop.id.toLowerCase()===e.currentTarget.value.toLowerCase())[0]
+            if (stop){
+                this.setState({
+                    stopCode: e.currentTarget.value,
+                    stopsFiltered: this.state.stops, 
+                    stopFilter: '',
+                    stop          
+                })
+            axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${e.currentTarget.value.toUpperCase()}`)
+            .then(res => {
+                let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
+                this.setState({ buss });
+            })
+            } else {
+                this.setState({
+                    stopCode: e.currentTarget.value
+                })
+            }
+    }
     }
     updateAgency() {
         return e => this.setState({
-            agency: e.currentTarget.value
+            agency: e.currentTarget.value,
+            stops: [],
+            stopsFiltered: []
         })
     }
     updateStop() {
@@ -114,6 +133,17 @@ class TransitStop extends React.Component {
                         stop: filtered[0]?filtered[0]:{},
                         stopCode: filtered[0]?filtered[0].id:''
                     })
+                if (filtered[0]){
+                    this.setState({
+                        stop: filtered[0],
+                        stopCode: filtered[0].id
+                    })
+                    axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${filtered[0].id}`)
+                    .then(res => {
+                        let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
+                        this.setState({ buss });
+                    })
+                }
             }
         }
     }
