@@ -87,7 +87,8 @@ class TransitStop extends React.Component {
         return e => this.setState({
             agency: e.currentTarget.value,
             stops: [],
-            stopsFiltered: []
+            stopsFiltered: [],
+            loaded: false
         })
     }
     updateStop() {
@@ -100,19 +101,19 @@ class TransitStop extends React.Component {
     }
     updateStopFilter() {
         return e => {
-            if (!e.currentTarget.value){
-                this.setState({
-                    stopFilter: '',
-                    stopsFiltered: this.state.stops
-                })
-            }
+            // if (!e.currentTarget.value){
+            //     this.setState({
+            //         stopFilter: '',
+            //         stopsFiltered: this.state.stops
+            //     })
+            // }
             // else if (e.currentTarget.value.length === 0){
             //     this.setState({
             //         stopFilter: '',
             //         stopsFiltered: this.state.stops
             //     })
             // }
-            else if (e.currentTarget.value.length === 1){
+            if (e.currentTarget.value.length === 1){
                 this.setState({
                     stopFilter: e.currentTarget.value,
                     stopsFiltered: this.state.stops
@@ -130,14 +131,16 @@ class TransitStop extends React.Component {
                     this.setState({
                         stopFilter: e.currentTarget.value,
                         stopsFiltered: filtered,
-                        stop: filtered[0]?filtered[0]:{},
-                        stopCode: filtered[0]?filtered[0].id:''
+                        // stop: filtered[0]?filtered[0]:{},
+                        // stopCode: filtered[0]?filtered[0].id:''
                     })
                 if (filtered[0]){
+                    let stop = filtered[0]
                     this.setState({
-                        stop: filtered[0],
-                        stopCode: filtered[0].id
+                        stopCode: stop.id,
+                        stop
                     })
+                    console.log(stop)
                     axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${filtered[0].id}`)
                     .then(res => {
                         let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
@@ -257,13 +260,12 @@ class TransitStop extends React.Component {
                 : <div></div>
                 }
             </div>
-            
                 <input type="text"
                     value={this.state.stopFilter}
                     className="stop-filter"
                     onChange={this.updateStopFilter()}
-           
-                    placeholder="Live Filter (BackSpace RePopulates StopList)"
+                    disabled={!this.state.loaded}
+                    placeholder={this.state.stopsFiltered[0]?"Live Filter (BackSpace RePopulates StopList)":"No Stops Loaded"}
                 />
                 <br></br>
             <select
@@ -271,6 +273,7 @@ class TransitStop extends React.Component {
                 className="stop-select"
                 onChange={this.updateStop()}
                 onMouseDown={this.updateStop()}
+                placeholder="No Stops Loaded"
                 // onClick={this.updateStop()}
             >
                 {stops}
