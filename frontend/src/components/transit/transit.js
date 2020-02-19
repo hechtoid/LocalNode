@@ -30,13 +30,12 @@ function Transit() {
 
       <div className="transit">
           <div className={pane === 'marin' ? 'transit-on' : 'transit-off'} >
-            {pane === 'marin' ? <Sansome /> : ''}
-            {pane === 'marin' ? <VanNess /> : ''}
+            <br></br>
+            {pane === 'marin' ? <><Sansome /> <VanNess /></> : ''}
           </div>
           <div className={pane === 'frisco' ? 'transit-on' : 'transit-off'}>
-            {pane === 'frisco' ? <Stockton /> : ''}
-            {pane === 'frisco' ? <Union /> : ''}
-            {pane === 'frisco' ? <Broadway /> : ''}
+          <br></br>
+            {pane === 'frisco' ? <><Stockton /> <Union /> <Broadway /> </>: ''}
           </div> 
           <div className={pane === 'user' ? 'transit-on' : 'transit-off'}>
             {pane === 'user' ? <TransitStop /> : ''}
