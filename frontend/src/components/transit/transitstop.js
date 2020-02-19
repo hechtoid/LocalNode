@@ -6,14 +6,14 @@ class TransitStop extends React.Component {
         super(props);
         this.state = {
             loaded: false,
-            stopCode: '16513',
-            agency: 'SF',
+            stopCode: 'EMBR',
+            agency: 'BA',
             buss: [],
             agencies: [],
             stops: [],
             stopFilter: '',
             stopsFiltered: [],
-            stop: {}
+            stop: {Name: 'Embarcadero'}
         }
         this.dateParser = this.dateParser.bind(this)
         this.loadBusss = this.loadBusss.bind(this);
@@ -71,6 +71,7 @@ class TransitStop extends React.Component {
                     stopFilter: '',
                     stop          
                 })
+            console.log(stop)
             axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${e.currentTarget.value.toUpperCase()}`)
             .then(res => {
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
@@ -101,18 +102,6 @@ class TransitStop extends React.Component {
     }
     updateStopFilter() {
         return e => {
-            // if (!e.currentTarget.value){
-            //     this.setState({
-            //         stopFilter: '',
-            //         stopsFiltered: this.state.stops
-            //     })
-            // }
-            // else if (e.currentTarget.value.length === 0){
-            //     this.setState({
-            //         stopFilter: '',
-            //         stopsFiltered: this.state.stops
-            //     })
-            // }
             if (e.currentTarget.value.length === 1){
                 this.setState({
                     stopFilter: e.currentTarget.value,
@@ -141,7 +130,7 @@ class TransitStop extends React.Component {
                         stop
                     })
                     console.log(stop)
-                    axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${filtered[0].id}`)
+                    axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stop.id}`)
                     .then(res => {
                         let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                         this.setState({ buss });
@@ -186,7 +175,7 @@ class TransitStop extends React.Component {
             console.log(this.state.buss[0])
             let key = 0 
             busss = this.state.buss.map(bus => {
-                stop = bus.MonitoredVehicleJourney.MonitoredCall.StopPointName
+                // stop = bus.MonitoredVehicleJourney.MonitoredCall.StopPointName
                 if (bus.MonitoredVehicleJourney.OperatorRef!=='BA'){
                     return (
                     <div className="bus" key={key++}>
@@ -284,10 +273,11 @@ class TransitStop extends React.Component {
                     value={this.state.stopCode}
                     onChange={this.updateStopCode()}
                     className="stop-id"
+                    disabled={!this.state.loaded}
                 />
                 {/* <input type="submit" value="Update Arrivals" /> */}
             {/* </form> */}
-                <span className="stop-title">{ stop } </span>
+                <span className="stop-title">{ this.state.stop.Name } </span>
                 <br></br>
                 { busss }
             </div>
