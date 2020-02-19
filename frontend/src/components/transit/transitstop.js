@@ -47,13 +47,15 @@ class TransitStop extends React.Component {
             .then(res => {
                 if (this.state.agency === "BA"){
                     let stops = res.data.Contents.dataObjects.ScheduledStopPoint.filter(stop => !stop.id.includes('place')&&!stop.Name.includes('Enter/Exit :'))
-                    axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=EMBR`).then(res => {
+                    this.setState({ 
+                        stop: this.state.stopCode?this.state.stop:stops.filter(stop => stop.Name==='Embarcadero')[0],
+                        stopCode: this.state.stopCode?this.state.stopCode:'EMBR',
+                        stopsFiltered: stops, 
+                        stops
+                    });
+                    axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${this.state.stopCode?this.state.stopCode:'EMBR'}`).then(res => {
                         let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                         this.setState({ 
-                            stop: stops.filter(stop => stop.Name==='Embarcadero')[0],
-                            stopCode: 'EMBR',
-                            stopsFiltered: stops, 
-                            stops,
                             buss 
                         });
                     })
