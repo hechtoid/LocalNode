@@ -334,6 +334,7 @@ class TransitStop extends React.Component {
                 >
                     {agencies}
                 </select>
+         
             </div>
             <hr></hr>
             <div className="slow">
@@ -348,13 +349,16 @@ class TransitStop extends React.Component {
                     placeholder={this.state.stopsFiltered[0]?"Live Filter by Stop Name":"No Stops Loaded"}
                 />
                 <br></br>
+                {/* {this.state.stop.Name} */}
             <select
                 disabled={!this.state.stopsFiltered[0]}
                 className="stop-select"
                 onChange={this.updateStop()}
                 onMouseDown={this.updateStop()}               
                 >
-                {/* <option selected disabled>{this.state.stop.id ? this.state.stop.Name+' '+this.state.stop.id:this.state.stop.Name}</option> */}
+                {/* <option selected disabled value='0'>
+                    {this.state.stop.id ? `${this.state.stop.Name} (${this.state.stop.id})`:''}
+                </option> */}
                 {stops}
             </select>            
             <div className="stop-info">
