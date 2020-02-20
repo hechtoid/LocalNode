@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, withRouter, Route, Switch, Link } from 'react-router-dom';
 import WeatherBox from './components/weather/weatherbox'
 import Transit from './components/transit/transit'
 import TransitStop from './components/transit/transitstop'
@@ -11,13 +11,17 @@ function App() {
   document.title="react511"
   return (
     <div className="App">
-      <Router>
+      <Router >
       <Switch>
-      <Route exact path="/react/weather" component={WeatherBox} />
-      <Route exact path="/react/transit" component={Transit} />
-      <Route exact path="/react/transitstop" component={TransitStop} />
-      <Route exact path="/react/aa" component={AA} />
-      <Route exact path="/react/anystop/:agency/:stop" component={AnyStopWildCard} title='stop by URL' />
+        <div>YUP</div>
+        <Link to={Transit}>LINK</Link>
+      <Route exact path="/weather">
+        <WeatherBox />
+      </Route> 
+      <Route path="/transit" component={Transit} />
+      <Route exact path="/transitstop" component={TransitStop} />
+      <Route exact path="/aa" component={AA} />
+      <Route exact path="/anystop/:agency/:stop" component={AnyStopWildCard} title='stop by URL' />
 
       </Switch>
       </Router>
@@ -25,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);
