@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, withRouter, Route, Switch, Link } from 'react-router-dom';
+import { HashRouter as Router, withRouter, Route, Switch, Link } from 'react-router-dom';
 import WeatherBox from './components/weather/weatherbox'
 import Transit from './components/transit/transit'
 import TransitStop from './components/transit/transitstop'
@@ -8,13 +8,12 @@ import AA from './components/transit/aa'
 import AnyStopWildCard from './components/transit/anyStopWildCard'
 
 function App() {
-  document.title="react511"
+  document.title="🌩️🚌"
   return (
     <div className="App">
       <Router >
       <Switch>
-        <div>YUP</div>
-        <Link to={Transit}>LINK</Link>
+
       <Route exact path="/weather">
         <WeatherBox />
       </Route> 
@@ -29,4 +28,4 @@ function App() {
   );
 }
 
-export default withRouter(App);
+export default App;

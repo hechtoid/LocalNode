@@ -5,7 +5,7 @@ import WeatherTemps from './weathertemps.js';
 
 
 function WeatherBox() {
-
+    document.title='specific spots'
     return (
     <div className="weather-box">
         <header>Weather Snippets</header> 
