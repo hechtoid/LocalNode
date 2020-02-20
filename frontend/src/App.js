@@ -11,19 +11,17 @@ function App() {
   document.title="🌩️🚌"
   return (
     <div className="App">
-      <Router >
       <Switch>
-
       <Route exact path="/weather">
         <WeatherBox />
       </Route> 
       <Route path="/transit" component={Transit} />
       <Route exact path="/transitstop" component={TransitStop} />
       <Route exact path="/aa" component={AA} />
-      <Route exact path="/anystop/:agency/:stop" component={AnyStopWildCard} title='stop by URL' />
-
+      <Route path="/anystop/:agency/:stop" render={(props) => (
+        <AnyStopWildCard {...props} /> )}
+      />
       </Switch>
-      </Router>
     </div>
   );
 }

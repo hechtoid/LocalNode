@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class AnyStopWildCard extends React.Component {
     constructor(props) {
@@ -90,4 +91,4 @@ class AnyStopWildCard extends React.Component {
     }
 
 }
-export default AnyStopWildCard;
+export default withRouter(AnyStopWildCard);
