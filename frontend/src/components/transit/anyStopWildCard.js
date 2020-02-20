@@ -18,6 +18,13 @@ class AnyStopWildCard extends React.Component {
                 this.setState({ buss });
             })
     }
+    componentDidUpdate() {
+        axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.props.match.params.agency.toUpperCase()}&stopCode=${this.props.match.params.stop.toUpperCase()}`)
+            .then(res => {
+                let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
+                this.setState({ buss });
+            })
+    }
 
     dateParser(zulu){
         return new Date(Date.parse(zulu)).toLocaleTimeString()
@@ -77,6 +84,7 @@ class AnyStopWildCard extends React.Component {
       </div>
       <div className="transit">
         <div className='transit-on'>
+        {this.props.match.params.stop.toUpperCase()}
             <div className="buss">
                 <span className="bold">
                     {stop}
