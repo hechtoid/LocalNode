@@ -227,9 +227,12 @@ class TransitStop extends React.Component {
                         Loaded <span className="bold">
                         {this.state.stops.length}
                         </span> stops.<br></br>
-                        <span className="bold">
-                            {this.state.stopsFiltered.length}
-                        </span> in Filter.
+                        
+                            {this.state.stopsFiltered.length===this.state.stops.length
+                            ?''
+                            :<><span className="bold">{this.state.stopsFiltered.length}</span> in Filter.</>
+                            }
+                        
                     </div>
             } 
             else if (this.state.loaded && this.state.stops[0]){
