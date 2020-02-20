@@ -10,15 +10,14 @@ function AA() {
           🚌
         </a>
       </div>
-
-
-    <div className="transit">
-      <div className='transit-on'>
-      <AnyStop title='Twenty Fourth Street BART' agency='BA' stop='24TH' />
-      <AnyStop title='Millbrae BART' agency='BA' stop='MLBR' />
-      <AnyStop title='CalTrain MillBrae' agency='CT' stop='70061' />
+      <div className="transit">
+        <div className='transit-on'>
+            <AnyStop title='Twenty Fourth Street BART' agency='BA' stop='24TH' />
+            <AnyStop title='Millbrae BART' agency='BA' stop='MLBR' />
+            <AnyStop title='CalTrain MillBrae' agency='CT' stop='70062' />
+            <AnyStop title='CalTrain San Mateo' agency='CT' stop='70091' />
+        </div>
       </div>
-    </div>
     </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class AnyStop extends React.Component {
+class AnyStopWildCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +11,7 @@ class AnyStop extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.props.agency}&stopCode=${this.props.stop}`)
+        axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.props.match.params.agency}&stopCode=${this.props.match.params.stop}`)
             .then(res => {
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                 this.setState({ buss });
@@ -67,13 +67,27 @@ class AnyStop extends React.Component {
             })   
         }
         return (
+        <div className="transit-master">
+        <div className="transit-switcher">
+        <div className="busemoji">
+        <a href="https://github.com/hechtoid/react511" target="_blank">
+          🚌
+        </a>
+      </div>
+      <div className="transit">
+        <div className='transit-on'>
             <div className="buss">
-                {this.props.title}
-                {stop}
-                {busss}
+                <span className="bold">
+                    {stop}
+                </span>
+                    {busss}
             </div>
+        </div>
+        </div>
+        </div>
+        </div>
         );
     }
 
 }
-export default AnyStop;
+export default AnyStopWildCard;
