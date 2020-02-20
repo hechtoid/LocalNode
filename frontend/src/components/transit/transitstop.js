@@ -398,20 +398,20 @@ class TransitStop extends React.Component {
                 {stops}
             </select>            
             <div className="stop-info">
-                <span>
-                    Stop ID:
-                </span>
+                
                 <input type="text"
                     value={this.state.stopCode}
                     onChange={this.updateStopCode()}
                     className="stop-id"
+                    placeholder="Stop by ID"
                     // disabled={!this.state.loaded}
                 />
                 <span 
                 className="stop-title"> { 
                 this.state.stop.Name 
                 ? this.state.stop.Name 
-                : stop.Name } </span>
+                : stop.Name } 
+                </span>
             </div>
                 { busss }
             </div>

@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import WeatherBox from './components/weather/weatherbox'
 import Transit from './components/transit/transit'
 import TransitStop from './components/transit/transitstop'
-import TransitAll from './components/transit/transitall'
 import AA from './components/transit/aa'
 import AnyStopWildCard from './components/transit/anyStopWildCard'
 
@@ -13,15 +12,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Route exact path="/weather" component={WeatherBox} />
-      <Route exact path="/transit" component={Transit} />
-      <Route exact path="/transitstop" component={TransitStop} />
-      <Route exact path="/transitall" component={TransitAll} />
-      <Route exact path="/aa" component={AA} />
-      <Route exact path="/anystop/:agency/:stop" component={AnyStopWildCard} title='stop by URL' />
-      {/* agency={params.agency} stop={params.stop} /> */}
+      <Switch>
+      <Route exact path="/react/weather" component={WeatherBox} />
+      <Route exact path="/react/transit" component={Transit} />
+      <Route exact path="/react/transitstop" component={TransitStop} />
+      <Route exact path="/react/aa" component={AA} />
+      <Route exact path="/react/anystop/:agency/:stop" component={AnyStopWildCard} title='stop by URL' />
 
-      {/* <i>powered by React</i> */}
+      </Switch>
       </Router>
     </div>
   );
