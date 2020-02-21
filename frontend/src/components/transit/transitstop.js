@@ -243,25 +243,27 @@ class TransitStop extends React.Component {
     }
     updateStopFilter() {
         return e => {
-            if (e.currentTarget.value.length === 1){
+            let stopFilter = e.currentTarget.value
+            if (stopFilter.length === 1){
                 this.setState({
-                    stopFilter: e.currentTarget.value,
-                    stopsFiltered: this.state.stops
+                    stopsFiltered: this.state.stops,
+                    stopFilter
                 })
             }
-            else if (e.currentTarget.value.length <= this.state.stopFilter.length){
-                let filtered = this.state.stops//.filter(stop => stop.Name.toLowerCase().includes(e.currentTarget.value.toLowerCase()))
+            else if (stopFilter.length <= this.state.stopFilter.length){
+                let stopsFiltered = this.state.stops//.filter(stop => stop.Name.toLowerCase().includes(e.currentTarget.value.toLowerCase()))
                 this.setState({
-                    stopFilter: e.currentTarget.value,
-                    stopsFiltered: this.state.stops
+                    stopFilter,
+                    stopsFiltered
                 })
             }  
-            else if (e.currentTarget.value.length >= 2){
-                let stopsFiltered = this.state.stopsFiltered.filter(stop => stop.Name.toLowerCase().includes(e.currentTarget.value.toLowerCase()))
+            else if (stopFilter.length >= 2){
+                let searchTerms = stopFilter.split(" ")
+                searchTerms.push("")
+                searchTerms.push("")
+                let stopsFiltered = this.state.stopsFiltered.filter(stop => stop.Name.toLowerCase().includes(searchTerms[0]) && stop.Name.toLowerCase().includes(searchTerms[1]) && stop.Name.toLowerCase().includes(searchTerms[2]))
                     this.setState({
-                        // stopFilter: stopsFiltered.length>0?e.currentTarget.value:'NO STOPS FOUND',
-                        // stopsFiltered: stopsFiltered.length>0?stopsFiltered:this.state.stops
-                        stopFilter: e.currentTarget.value,
+                        stopFilter,
                         stopsFiltered
                     })
                 if (stopsFiltered[0]){
