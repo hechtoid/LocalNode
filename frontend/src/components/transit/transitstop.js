@@ -135,60 +135,59 @@ class TransitStop extends React.Component {
     }
     updateStopCode() {
         return e => {
-            let stopCode = e.currentTarget.value.toUpperCase()
-            if (stopCode.length < 3){
-                this.setState({
-                    stopCode
-                })
-            }
-             else if (stopCode.length === this.agencyCodeLengthSwitch()){
-                let stop = this.state.stops.filter(stop=>stop.id.toUpperCase()===stopCode)[0]
-                    if (stop) {
-                        console.log(stop)
-                        this.setState({
-                            stopsFiltered: this.state.stops,
-                            stopFilter: '',
-                            stopCode,
-                            stop
-                        })
-                    } else {
-                        this.setState({
-                            stop: {},
-                            stopCode
-                        })
-                    }
-                axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stopCode}`)
-                .then(res => {
-                let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
-                    this.setState({ buss });
-                })
-            } else if (stopCode.length>=6){
-                let stop = this.state.stops.filter(stop=>stop.id.toUpperCase()===stopCode)[0]
-                    if (stop){
-                        console.log(stop)
-                        this.setState({
-                            stopsFiltered: this.state.stops,
-                            stopFilter: '',
-                            stopCode,
-                            stop
-                        })
+            let stopCode = e.currentTarget.value//.toUpperCase()
+            let stoppCode = stopCode.toUpperCase()
+            this.setState({
+                stopCode
+            })
+            if (stopCode.length === this.agencyCodeLengthSwitch()){
+            let stop = this.state.stops.filter(stop=>stop.id.toUpperCase()===stoppCode)[0]
+                if (stop) {
+                    console.log(stop)
+                    this.setState({
+                        stopsFiltered: this.state.stops,
+                        stopFilter: '',
+                        stopCode: stoppCode,
+                        stop
+                    })
                 } else {
                     this.setState({
                         stop: {},
-                        stopCode
+                        // stopCode
                     })
                 }
+                axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stoppCode}`)
+                .then(res => {
+                let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
+                    this.setState({ stopCode: stoppCode, buss });
+                })
+            } else if (stopCode.length>=6){
+            let stop = this.state.stops.filter(stop=>stop.id.toUpperCase()===stoppCode)[0]
+                if (stop){
+                    console.log(stop)
+                    this.setState({
+                        stopsFiltered: this.state.stops,
+                        stopFilter: '',
+                        // stopCode,
+                        stop
+                    })
+            } else {
+                this.setState({
+                    stop: {},
+                    // stopCode
+                })
+            }
                 axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stopCode}`)
                 .then(res => {
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                     this.setState({ buss });
                 })
-            }
-            else {
-                this.setState({
-                    stopCode
-                })
-            }
+        }
+        // else {
+        //     this.setState({
+        //         stopCode
+        //     })
+        // }
     }
     }
     updateAgency() {
@@ -451,7 +450,7 @@ class TransitStop extends React.Component {
                     onChange={this.updateStopCode()}
                     id="stop-id"
                     placeholder="Stop by ID"
-                    maxLength={`${this.agencyCodeLengthSwitch()}`}
+                    maxlength={`${this.agencyCodeLengthSwitch()}`}
                     // onFocus={this.selectID}
                 />
                 <span
