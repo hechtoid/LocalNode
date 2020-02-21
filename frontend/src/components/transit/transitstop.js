@@ -133,51 +133,50 @@ class TransitStop extends React.Component {
     }
     updateStopCode() {
         return e => {
-            if (e.currentTarget.value.length < 3){
+            let stopCode = e.currentTarget.value.toUpperCase()
+            if (stopCode.length < 3){
                 this.setState({
-                    stopCode: e.currentTarget.value
+                    stopCode
                 })
             }
-             else if (e.currentTarget.value.length === this.agencySwitch()){
-                let stop = this.state.stops.filter(stop=>stop.id.toLowerCase()===e.currentTarget.value.toLowerCase())[0]
+             else if (stopCode.length === this.agencySwitch()){
+                let stop = this.state.stops.filter(stop=>stop.id.toUpperCase()===stopCode)[0]
                     if (stop) {
                         console.log(stop)
                         this.setState({
-                            stopCode: e.currentTarget.value,
                             stopsFiltered: this.state.stops, 
-                            // stopFilter: stop.Name,
                             stopFilter: '',
+                            stopCode,
                             stop          
                         })
                     } else {
                         this.setState({
-                            stopCode: e.currentTarget.value,
-                            stop: {}
+                            stop: {},
+                            stopCode
                         })
                     }
-                axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${e.currentTarget.value.toUpperCase()}`)
+                axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stopCode}`)
                 .then(res => {
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                     this.setState({ buss });
                 })
-            } else if (e.currentTarget.value.length>=6){
-                let stop = this.state.stops.filter(stop=>stop.id.toLowerCase()===e.currentTarget.value.toLowerCase())[0]
+            } else if (stopCode.length>=6){
+                let stop = this.state.stops.filter(stop=>stop.id.toUpperCase()===stopCode)[0]
                     if (stop){
                         console.log(stop)
                         this.setState({
-                            stopCode: e.currentTarget.value,
                             stopsFiltered: this.state.stops, 
-                            // stopFilter: stop.Name,
                             stopFilter: '',
+                            stopCode,
                             stop          
                         })
                 } else {
                     this.setState({
-                        stopCode: e.currentTarget.value,
-                        stop: {}
+                        stop: {},
+                        stopCode
                     })
                 }
-                axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${e.currentTarget.value.toUpperCase()}`)
+                axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stopCode}`)
                 .then(res => {
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                     this.setState({ buss });
@@ -185,7 +184,7 @@ class TransitStop extends React.Component {
             }
             else {
                 this.setState({
-                    stopCode: e.currentTarget.value
+                    stopCode
                 })
             }
     }
@@ -283,8 +282,8 @@ class TransitStop extends React.Component {
     }
     render() {
         let slow
-            if (this.state.loaded && !this.state.stops[0]){
-                slow = <div>Loading.....Muni and the VTA have ~3500 stops,<br></br>ACTransit more than 5000.</div>
+            if(this.state.loaded && !this.state.stops[0]) {
+                slow = <div><span>Muni and the VTA have ~3500 stops,</span><br></br><span>ACTransit more than 5000.</span></div>
             }
             else if (this.state.loaded && this.state.stops[0] && this.state.stopFilter){
                 slow = <div>
@@ -401,9 +400,11 @@ class TransitStop extends React.Component {
             </div>
             <hr></hr>
             <div className="slow">
-            {this.state.loaded
-            ? <button disabled className="stop-loads" >Load Stops</button>
-            : <button className="load-stops" onClick={this.loadStops}>Load Stops</button>
+            {!this.state.loaded 
+            ? <button className="load-stops" onClick={this.loadStops}>Load Stops</button>
+            : this.state.stops[0]
+            ?  <button disabled className="stop-loads" >Loaded</button>
+            : <button disabled className="stop-loading" >Loading</button>
             }
                 {slow}
             </div>
@@ -431,8 +432,6 @@ class TransitStop extends React.Component {
                     placeholder={this.state.loaded?"Live Filter":"No Stops Loaded"}
                 />
                 <br></br>
-                {/* {this.state.stop.Name} */}
-                  
             <div className="stop-info">
                 
                 <input type="text"
@@ -441,13 +440,15 @@ class TransitStop extends React.Component {
                     className="stop-id"
                     placeholder="Stop by ID"
                     maxlength={`${this.agencySwitch()}`}
-                    // disabled={!this.state.loaded}
                 />
                 <span 
                 className="stop-title"> { 
                 this.state.stop.Name 
                 ? this.state.stop.Name 
-                : stop.Name } 
+                : stop.Name
+                // ? stop.Name 
+                // : 'not a valid stopCode'
+                } 
                 </span>
             </div>
                 { busss }
