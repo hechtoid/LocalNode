@@ -21,6 +21,7 @@ class TransitStop extends React.Component {
         this.loadStops = this.loadStops.bind(this);
         this.updateStopFilter = this.updateStopFilter.bind(this)
         this.agencySwitch = this.agencySwitch.bind(this)
+        this.selectID = this.selectID.bind(this)
     }
 
     componentDidMount() {
@@ -88,6 +89,9 @@ class TransitStop extends React.Component {
     }
 
     //http://api.511.org/transit/stoptimetable?api_key={your-key}&MonitoringRef=13008&OperatorRef=SF
+    selectID = (event) => event.target.select();
+       
+    
 
     dateParser(zulu){
         return new Date(Date.parse(zulu)).toLocaleTimeString()
@@ -414,6 +418,7 @@ class TransitStop extends React.Component {
                 disabled={!this.state.stopsFiltered[0]}
                 className="stop-select"
                 onChange={this.updateStop()}
+                // value={this.state.stop.Name}
                 // onMouseDown={this.updateStop()}         
                 // onBlur={this.updateStop()}         
                 >
@@ -432,6 +437,7 @@ class TransitStop extends React.Component {
                     onChange={this.updateStopFilter()}
                     disabled={!this.state.loaded}
                     placeholder={this.state.loaded?"Live Filter":"No Stops Loaded"}
+                    // onPaste
                 />
                 <br></br>
             <div className="stop-info">
@@ -439,17 +445,16 @@ class TransitStop extends React.Component {
                 <input type="text"
                     value={this.state.stopCode}
                     onChange={this.updateStopCode()}
-                    className="stop-id"
+                    id="stop-id"
                     placeholder="Stop by ID"
                     maxlength={`${this.agencySwitch()}`}
+                    // onFocus={this.selectID}
                 />
                 <span 
-                className="stop-title"> { 
-                this.state.stop.Name 
+                className="stop-title"> 
+                { this.state.stop.Name 
                 ? this.state.stop.Name 
                 : stop.Name
-                // ? stop.Name 
-                // : 'not a valid stopCode'
                 } 
                 </span>
             </div>

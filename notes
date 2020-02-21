@@ -1,4 +1,5 @@
-multiple names with .every?
+#multiple names with .every?
+#EMPTY STRINGS HACKERMAN
 
 use schedules
 
@@ -7,3 +8,6 @@ add map/GPS
 #update stopCode if filter.length===1
 
 #update stop object by stop code
+
+https://www.npmjs.com/package/react-device-detect
+https://www.npmjs.com/package/react-select
