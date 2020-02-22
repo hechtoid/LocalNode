@@ -216,16 +216,18 @@ class TransitStop extends React.Component {
                 this.setState({ stopsFiltered })
                 if (stopsFiltered[0]){
                     let stop = stopsFiltered[0]
-                    console.log(stop)
-                    this.setState({
-                        stopCode: stop.id,
-                        stop
-                    })
-                    axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stop.id}`)
-                    .then(res => {
-                        let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
-                        this.setState({ buss });
-                    })
+                    if (this.state.stopCode !== stop.id){
+                        console.log(stop)
+                        this.setState({
+                            stopCode: stop.id,
+                            stop
+                        })
+                        axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stop.id}`)
+                        .then(res => {
+                            let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
+                            this.setState({ buss });
+                        })
+                    }
                 }
             }
         }
