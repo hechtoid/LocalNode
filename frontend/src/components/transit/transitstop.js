@@ -69,14 +69,14 @@ class TransitStop extends React.Component {
         })
     }
 
-    loadBusss(e) {
+    loadBusss() {
         axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${this.state.stopCode}`)
             .then(res => {
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                 this.setState({ buss });
             })
     }
-    selectID = (event) => event.target.select();
+    selectID = (e) => e.target.select();
 
     dateParser(zulu){
         return new Date(Date.parse(zulu)).toLocaleTimeString()
@@ -100,7 +100,7 @@ class TransitStop extends React.Component {
                 stops,
                 agency
         })
-        axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stops.id}`)
+        axios.get(`https://api.511.org/transit/StopMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&Format=JSON&agency=${this.state.agency}&stopCode=${stop.id}`)
             .then(res => {
                 let buss = res.data.ServiceDelivery.StopMonitoringDelivery.MonitoredStopVisit;
                 this.setState({ buss });
@@ -143,7 +143,6 @@ class TransitStop extends React.Component {
                 else {
                     let stops = res.data.Contents.dataObjects.ScheduledStopPoint;
                     let stop = stops[0]
-                    // let agency = this.state.agency
                     let stopLists = this.state.stopLists
                     stopLists[this.state.agency] = stops
                     this.setState({
@@ -183,22 +182,26 @@ class TransitStop extends React.Component {
     updateStopFilter() {
         return e => {
             let stopFilter = e.currentTarget.value
-            if (stopFilter.length < 3){
+            if (stopFilter.length === 1){
                 this.setState({
                     stopsFiltered: this.state.stops,
+                })
+            }
+            if (stopFilter.length < 3){
+                this.setState({
                     stopFilter
                 })
             }
             else if (stopFilter.length <= this.state.stopFilter.length){
-                let stopsFiltered = this.state.stops//.filter(stop => stop.Name.toLowerCase().includes(e.currentTarget.value.toLowerCase()))
+                let stopsFiltered = this.state.stops
                 this.setState({
                     stopFilter,
                     stopsFiltered
                 })
             }
             else if (stopFilter.length >= 3){
+                this.setState({ stopFilter })
                 let searchTerms = stopFilter.toLowerCase().split(" ")
-                console.log(searchTerms)
                 searchTerms.push("")
                 searchTerms.push("")
                 searchTerms.push("")
@@ -210,10 +213,7 @@ class TransitStop extends React.Component {
                     && stopName.includes(searchTerms[3]))
                     {return true}
                 })
-                    this.setState({
-                        stopFilter,
-                        stopsFiltered
-                    })
+                this.setState({ stopsFiltered })
                 if (stopsFiltered[0]){
                     let stop = stopsFiltered[0]
                     console.log(stop)
@@ -232,7 +232,7 @@ class TransitStop extends React.Component {
     }
     updateStopCode() {
         return e => {
-            let stopCode = e.currentTarget.value//.toUpperCase()
+            let stopCode = e.currentTarget.value
             let stoppCode = stopCode.toUpperCase()
             if (stopCode.length <= this.agencyCodeLengthMap[this.state.agency] ){
             this.setState({
