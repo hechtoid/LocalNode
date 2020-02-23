@@ -17,9 +17,9 @@ function Transit() {
             🚌
           </a>
         </div>
-        <div id='marin' className={pane === 'marin' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('marin')}>MARIN</div>
-        <div className={pane === 'frisco' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('frisco')}>FRISCO</div>
-        <div className={pane === 'user' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('user')}>USER</div>
+        <div className={pane === 'frisco' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('frisco')}>commuter</div>
+        <div id='marin' className={pane === 'marin' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('marin')}>weekender</div>
+        <div className={pane === 'user' ? 'transit-switch-on' : 'transit-switch-off'} onClick={() => setPane('user')}>anywherer</div>
         <div className="five-eleven">
           <a href="https://511.org/open-data/transit" target="_blank" title="powered by 511 open data">
             <img className="five-eleven" src="http://proxy-prod.511.org/assets/img/branding/511_original_web.png">
