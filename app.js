@@ -24,9 +24,9 @@ app.get("/", function (req, res) {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use("/react/api/weather", weather);
 // for when running local react dev server
 app.use("/api/weather", weather);
+app.use("/react/api/weather", weather);
 
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.get('/react/*', (req, res) => {
