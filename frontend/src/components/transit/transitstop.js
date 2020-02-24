@@ -100,30 +100,31 @@ class TransitStop extends React.Component {
                 if (this.state.agency === "BA") {
                     let stops = res.data.Contents.dataObjects.ScheduledStopPoint.filter(stop => !stop.id.includes('place') && !stop.Name.includes('Enter/Exit :'))
                     let stopCode = this.state.stopCode || 'EMBR'
+                    let stop = stops.filter(stop => stop.id === stopCode.toUpperCase())[0] || stops.filter(stop => stop.id === 'EMBR')[0]
                     this.setState({
-                        stop: stops.filter(stop => stop.id === stopCode)[0],
                         stopFilter: '',
                         stopsFiltered: stops,
                         stopLists: {'BA': stops},
-                        stopCode,
-                        stops
+                        stopCode: stop.id,
+                        stops,
+                        stop
                     });
                     this.loadBusss( e, this.state.agency, stopCode )
                 }
                 else {
                     let stops = res.data.Contents.dataObjects.ScheduledStopPoint;
-                    let stop = stops[0]
+                    let stop = stops.filter(stop => stop.id === this.state.stopCode.toUpperCase())[0] || stops[0]
                     let stopLists = this.state.stopLists
                     stopLists[this.state.agency] = stops
                     this.setState({
-                        stop: stop,
                         stopCode: stop.id,
                         stopFilter: '',
                         stopsFiltered: stops,
                         stopLists,
-                        stops
+                        stops,
+                        stop
                     });
-                    this.loadBusss( e, this.state.agency, stop.id)
+                    this.loadBusss( e, this.state.agency, stop.id )
                 }
             })
     }    
@@ -244,7 +245,7 @@ class TransitStop extends React.Component {
             }
 
         let agencies
-        if (this.state.agencies){
+        if (this.state.agencies) {
             let key = 0
             agencies = this.state.agencies.map(agency => {
                 return (
@@ -260,7 +261,7 @@ class TransitStop extends React.Component {
             })
         }
         let stops
-        if (this.state.stopsFiltered){
+        if (this.state.stopsFiltered) {
             let key = 0
             stops = this.state.stopsFiltered.map(stop => {
                 return (
@@ -276,7 +277,7 @@ class TransitStop extends React.Component {
                 <br></br>
                 <span className='update' onClick={this.loadBusss}>Check again</span>, check your inputs, or check the schedule.
             </div>
-        if (this.state.buss[0]){
+        if (this.state.buss[0]) {
             stopName = this.state.buss[0].MonitoredVehicleJourney.MonitoredCall.StopPointName
             let key = 0
             busss = this.state.buss.map(bus => {
@@ -370,7 +371,6 @@ class TransitStop extends React.Component {
                 />
                 <br></br>
             <div className="stop-info">
-
                 <input type="text"
                     id="stop-id"
                     placeholder="Stop Code"
@@ -388,6 +388,5 @@ class TransitStop extends React.Component {
             </div>
         );
     }
-
 }
 export default TransitStop;
