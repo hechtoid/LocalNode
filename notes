@@ -1,11 +1,13 @@
+add Line Filter prop to anyStop
+
 #switch agencyswitch to hash!
 
-internalBusLoad
-BUT ALSO
-componentDidUPdate
+#internalBusLoad
+#??BUT ALSO
+#??componentDidUPdate
 
-?if no expected time only show aimed, don't gray
-or if the same?
+#?if no expected time only show aimed, don't gray
+??or if the same?
 
 #multiple names with .every?
 #EMPTY STRINGS HACKERMAN
