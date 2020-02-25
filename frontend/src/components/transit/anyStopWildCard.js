@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import Bus from './bus';
 
 class AnyStopWildCard extends React.Component {
     constructor(props) {
@@ -8,7 +9,6 @@ class AnyStopWildCard extends React.Component {
         this.state = {
            buss: []
         }
-        this.dateParser=this.dateParser.bind(this)
     }
 
     componentDidMount() {
@@ -26,10 +26,6 @@ class AnyStopWildCard extends React.Component {
             })
     }
 
-    dateParser(zulu){
-        return new Date(Date.parse(zulu)).toLocaleTimeString()
-    }
-
     render() {
         let busss = <div className="bus">
             No Tracked Vehicles to show. 
@@ -41,37 +37,7 @@ class AnyStopWildCard extends React.Component {
             stop = this.state.buss[0].MonitoredVehicleJourney.MonitoredCall.StopPointName
             let key = 0 
             busss = this.state.buss.map(bus => {
-                if (bus.MonitoredVehicleJourney.OperatorRef!== "BA"){
-                    return (
-                    <div className="bus" key={key++}>
-                        <span className="bold">
-                            {bus.MonitoredVehicleJourney.LineRef}
-                        </span> => {bus.MonitoredVehicleJourney.DestinationName}
-                        <br></br>
-                        <span>
-                            {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)}
-                        </span> => <span className="bold">
-                            {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}
-                        </span>
-                    </div>
-                ) 
-            }else {
-                return (
-                    <div className="bus" key={key++}>
-                        <span>
-                            {bus.MonitoredVehicleJourney.OriginName} 
-                        </span> => <span className="bold">
-                            {bus.MonitoredVehicleJourney.DestinationName}
-                        </span>
-                        <br></br>
-                        <span>
-                            {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)}
-                        </span> => <span className="bold">
-                            {this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}
-                        </span>
-                    </div>
-                )
-            }
+                return <Bus bus={bus} key={key++} />
             })   
         }
         return (

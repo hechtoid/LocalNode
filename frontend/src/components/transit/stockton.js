@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Bus from './bus'
 
 class Stockton extends React.Component {
     constructor(props) {
@@ -30,13 +31,7 @@ class Stockton extends React.Component {
                 if (bus.MonitoredVehicleJourney.LineRef === '30' 
                 || bus.MonitoredVehicleJourney.LineRef === '45' 
                 || bus.MonitoredVehicleJourney.LineRef ==='91'){
-                return(
-                    <div className="bus" key={key++}>
-                        <span className="bold">{bus.MonitoredVehicleJourney.LineRef}</span> => {bus.MonitoredVehicleJourney.DestinationName}
-                        <br></br>
-                        <span>{this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)}</span> => <span className="bold">{this.dateParser(bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime)}</span>
-                    </div>
-                    )
+                return <Bus bus={bus} key={key++} />
                 }
             })    
         }

@@ -274,7 +274,7 @@ class TransitStop extends React.Component {
         }
         let stopName = ''
         let busss = <div className="bus">
-                No Tracked Vehicles to show.
+                No Tracked Vehicles.
                 <br></br>
                 <span className='update' onClick={this.loadBusss}>Check again</span>, check your inputs, or check the schedule.
             </div>
