@@ -4,6 +4,7 @@ import { HashRouter as Router, withRouter, Route, Switch, Link } from 'react-rou
 import WeatherBox from './components/weather/weatherbox'
 import Transit from './components/transit/transit'
 import TransitStop from './components/transit/transitstop'
+import Vehicular from './components/transit/vehicular'
 import AA from './components/transit/aa'
 import AnyStopWildCard from './components/transit/anyStopWildCard'
 
@@ -17,6 +18,7 @@ function App() {
       </Route> 
       <Route path="/transit" component={Transit} />
       <Route exact path="/transitstop" component={TransitStop} />
+      <Route exact path="/vehicular" component={Vehicular} />
       <Route exact path="/aa" component={AA} />
       <Route path="/anystop/:agency/:stop" render={(props) => (
         <AnyStopWildCard {...props} /> )}

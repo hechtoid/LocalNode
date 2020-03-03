@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import AnyStop from './anyStop';
 import TransitStop from './transitstop';
+import { Link } from 'react-router-dom';
+
 
 
 function Transit() {
@@ -10,9 +12,14 @@ function Transit() {
     <div className="transit-master">
       <div className="transit-switcher">
         <div className="busemoji">
-          <a href="https://github.com/hechtoid/transitYourself" target="_blank" rel="noopener noreferrer">
+          <Link to={{
+            pathname: "/vehicular", 
+            state: {
+              busNumber:"5"
+              }
+              }} >
             <span role="img" aria-label="bus emoji">🚌</span>
-          </a>
+          </Link>
         </div>
         <div className={
           pane === 'frisco' 
