@@ -16,7 +16,7 @@ class WeatherTemps extends React.Component {
         let spots = []
         axios.get('api/weather/spots')
             .then( res => {
-                let spots = res.data   
+                spots = res.data   
             this.setState({spots})
         })
     }

@@ -15,7 +15,7 @@ function Transit() {
           <Link to={{
             pathname: "/vehicular", 
             state: {
-              busNumber:"5"
+              vehicleNumber:"8612"
               }
               }} >
             <span role="img" aria-label="bus emoji">🚌</span>
@@ -36,7 +36,7 @@ function Transit() {
           : 'transit-switch-off'} onClick={() => setPane('user')}>Anywherer</div>
         <div className="five-eleven">
           <a href="https://511.org/open-data/transit" title="powered by 511 open data" target="_blank" rel="noopener noreferrer">
-            <img className="five-eleven" src="http://proxy-prod.511.org/assets/img/branding/511_original_web.png" alt="511 logo">
+            <img className="five-eleven" src="https://proxy-prod.511.org/assets/img/branding/511_original_web.png" alt="511 logo">
             </img>
           </a>
         </div>

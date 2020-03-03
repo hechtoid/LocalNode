@@ -1,7 +1,7 @@
 import React from 'react';
 import WeatherGeo from './weathergeo.js';
 import WeatherAdd from './weatheradd.js';
-import WeatherTemps from './weathertemps.js';
+// import WeatherTemps from './weathertemps.js';
 
 
 function WeatherBox() {

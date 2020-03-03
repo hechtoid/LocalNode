@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import { HashRouter as Router, withRouter, Route, Switch, Link } from 'react-router-dom';
+// import { HashRouter as Router, withRouter, Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import WeatherBox from './components/weather/weatherbox'
 import Transit from './components/transit/transit'
 import TransitStop from './components/transit/transitstop'
