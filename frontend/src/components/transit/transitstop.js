@@ -280,15 +280,41 @@ class TransitStop extends React.Component {
             })
         }
         return (
-            <div className = "stop" >
-                <span className="short-title">Agency ShortList:</span>
-                <br></br>
-                <label><input type="radio" onChange={this.updateAgency()} checked={this.state.agency==="SF"} value="SF" />Muni</label>
-                <label><input type="radio" onChange={this.updateAgency()} checked={this.state.agency==="AC"} value="AC" />AC</label>
-                <br></br>
-                <label><input type="radio" onChange={this.updateAgency()} checked={this.state.agency==="GG"} value="GG" />GG</label>
-                <label>&nbsp;&nbsp;&nbsp;<input type="radio" onChange={this.updateAgency()} checked={this.state.agency === "BA"} value="BA" />Bart</label>
-                <span className="agency-code">{this.state.agency}</span>
+            <div className = "stop">
+                <div className="agency-upper">
+                <div className="radios">
+            <div className="short-title">Agency ShortList:</div>
+                <div className="radio-one">
+                    <label><input type="radio" 
+                        onChange={this.updateAgency()} 
+                        checked={this.state.agency==="SF"} 
+                        value="SF" />SF</label>
+                    <label><input type="radio" 
+                        onChange={this.updateAgency()} 
+                        checked={this.state.agency==="GG"} 
+                        value="GG" />GG</label>
+                    <label>&nbsp;&nbsp;&nbsp;<input type="radio" 
+                        onChange={this.updateAgency()} 
+                        checked={this.state.agency === "BA"} 
+                        value="BA" />Bart</label>
+                </div>
+                <div className="radio-two">
+                    <label><input type="radio" 
+                        onChange={this.updateAgency()} 
+                        checked={this.state.agency==="AC"} 
+                        value="AC" />AC</label>
+                    <label><input type="radio" 
+                        onChange={this.updateAgency()} 
+                        checked={this.state.agency === "SM"} 
+                        value="SM" />Sam</label>
+                    <label><input type="radio" 
+                        onChange={this.updateAgency()} 
+                        checked={this.state.agency==="MA"} 
+                        value="MA" />Marin</label>
+                </div>
+                </div>
+            <span className="agency-code">{this.state.agency}</span>
+		    </div>
             <div className="agencies-string">
                 All {this.state.agencies.length} Transit Agencies:
                 <div className="politics">
