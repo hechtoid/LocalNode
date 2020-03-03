@@ -218,22 +218,22 @@ class TransitStop extends React.Component {
     render() {
         let slow
             if (this.state.loaded && !this.state.stops[0]) {
-                slow = <div><span>Muni and the VTA have <span className="bold">~3500</span> stops,</span><br></br><span>ACTransit more than <span className="bold">5000</span>.</span></div>
+                slow = <div><span>Muni and the VTA have <span className="stops-number">~3500</span> stops,</span><br></br><span>ACTransit more than <span className="stops-number">5000</span>.</span></div>
             }
             else if (this.state.loaded && this.state.stops[0] && this.state.stopFilter) {
                 slow = <div>
-                        Loaded <span className="bold">
+                        Loaded <span className="stops-number">
                         {this.state.stops.length}
                         </span> stops.<br></br>
                             {this.state.stopsFiltered.length===this.state.stops.length
                             ?''
-                            :<><span className="bold">{this.state.stopsFiltered.length}</span> in Filter.</>
+                            :<><span className="stops-number">{this.state.stopsFiltered.length}</span> in Filter.</>
                             }
                     </div>
             }
             else if (this.state.loaded && this.state.stops[0]) {
                 slow = <div>
-                        Loaded <span className="bold">
+                        Loaded <span className="stops-number">
                         {this.state.stops.length}
                         </span> stops.<br></br>
                     </div>
@@ -338,19 +338,21 @@ Seamless Bay Area</a>)
                 />
                 <br></br>
             <div className="stop-info">
-                <input type="text"
+                <span className="stop-title">
+                { this.state.stop.Name
+                ? this.state.stop.Name
+                : stopName }
+                </span>
+            <input type="text"
                     id="stop-id"
                     placeholder="Stop Code"
                     value={this.state.stopCode}
                     onFocus={this.selectID}
                     onChange={this.updateStopCode()}
                 />
-                <span className="stop-title">
-                { this.state.stop.Name
-                ? this.state.stop.Name
-                : stopName }
-                </span>
-            </div>
+
+
+		</div>
                 { busss }
             </div>
         );
