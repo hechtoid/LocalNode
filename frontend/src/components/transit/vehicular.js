@@ -13,7 +13,7 @@ class Vehicular extends React.Component {
 
     componentDidMount() {
         this.loadVehicle()
-        document.title="transitYourself - Live Tracker"
+        document.title="transitYourself - Vehicle Tracker"
     }
     loadVehicle() { 
         let vehicle = {}
