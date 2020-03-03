@@ -4,7 +4,7 @@ import axios from 'axios';
 class Vehicular extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.location.state || {vehicleNumber: 8612}
+        this.state = this.props.location.state || {}
            
         
         this.loadVehicle = this.loadVehicle.bind(this)
@@ -13,6 +13,7 @@ class Vehicular extends React.Component {
 
     componentDidMount() {
         this.loadVehicle()
+        document.title="transitYourself - Live Tracker"
     }
     loadVehicle() { 
         let vehicle = {}
@@ -39,21 +40,27 @@ class Vehicular extends React.Component {
             if (this.state.vehicle && this.state.vehicle.Monitored) {
                 let gmapsURL = `https://www.google.com/maps/search/?api=1&query=${this.state.vehicle.VehicleLocation.Latitude},${this.state.vehicle.VehicleLocation.Longitude}`
                 vehicleInfo = <div className="vehicleInfo">
-                        Vehicle <span className="bold">#{this.state.vehicle.VehicleRef}</span> is on route  
-                        <span className="bold"> {this.state.vehicle.LineRef} </span> 
-                        to <span className="bold"> {this.state.vehicle.DestinationName}</span>.
+                        Vehicle <span className="bold">
+                            #{this.state.vehicle.VehicleRef}
+                        </span> is currently serving route  
+                        <span className="bold"> {this.state.vehicle.LineRef}</span>, 
                         <br></br>
-                        The NextStop is <span className="bold">{this.state.vehicle.MonitoredCall.StopPointName}</span>,
-                        <br></br>
-                        Scheduled for <span className="bold">
-                            {new Date(Date.parse(this.state.vehicle.MonitoredCall.AimedArrivalTime)).toLocaleTimeString()} </span>
-                            but arriving at <span className="bold">
-                                {new Date(Date.parse(this.state.vehicle.MonitoredCall.ExpectedArrivalTime)).toLocaleTimeString()}
-                            </span>
+                        Final Destination <span className="bold"> {this.state.vehicle.DestinationName}
+                        </span>.
                         <br></br>
                         <a href = {gmapsURL} target="_blank" rel="noopener noreferrer">
                             Last Reported GPS Coördinates
                         </a>
+                        <br></br>
+                        The NextStop is <span className="bold">
+                            {this.state.vehicle.MonitoredCall.StopPointName}
+                            </span>,
+                        <br></br>
+                        Scheduled for <span className="bold">
+                            {new Date(Date.parse(this.state.vehicle.MonitoredCall.AimedArrivalTime)).toLocaleTimeString()} </span>
+                        but Arriving at <span className="bold">
+                            {new Date(Date.parse(this.state.vehicle.MonitoredCall.ExpectedArrivalTime)).toLocaleTimeString()}
+                        </span>
                         <br></br>
                         Future Stops: 
                         <br></br>

@@ -12,14 +12,9 @@ function Transit() {
     <div className="transit-master">
       <div className="transit-switcher">
         <div className="busemoji">
-          <Link to={{
-            pathname: "/vehicular", 
-            state: {
-              vehicleNumber:"8612"
-              }
-              }} >
+            <Link to= "/vehicular" >
             <span role="img" aria-label="bus emoji">🚌</span>
-          </Link>
+            </Link>
         </div>
         <div className={
           pane === 'frisco' 
