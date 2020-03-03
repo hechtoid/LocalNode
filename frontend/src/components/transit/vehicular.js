@@ -9,6 +9,7 @@ class Vehicular extends React.Component {
         
         this.loadVehicle = this.loadVehicle.bind(this)
         this.updateVehicleNumber = this.updateVehicleNumber.bind(this)
+        this.updateAgency = this.updateAgency.bind(this)
     }
 
     componentDidMount() {
@@ -17,7 +18,8 @@ class Vehicular extends React.Component {
     }
     loadVehicle() { 
         let vehicle = {}
-        axios.get(`https://api.511.org/transit/VehicleMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&agency=SF&format=json&vehicleID=${this.state.vehicleNumber}`)
+        let agency = this.state.agency ? this.stage.agency : 'SF'
+        axios.get(`https://api.511.org/transit/VehicleMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&agency=${agency}&format=json&vehicleID=${this.state.vehicleNumber}`)
             .then(res => {
                 vehicle = res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery.VehicleActivity
                 ? res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery.VehicleActivity[0].MonitoredVehicleJourney
@@ -34,11 +36,27 @@ class Vehicular extends React.Component {
             })
         }
     }
+    updateAgency() {
+        return e => {
+            let agency = e.currentTarget.value
+            this.setState({
+                agency
+            })
+        }
+    }
     render() {
             let vehicleInfo = <div>no Tracked Vehicle</div>
+            let futureStops
             let key = 0
-            if (this.state.vehicle && this.state.vehicle.Monitored) {
-                let gmapsURL = `https://www.google.com/maps/search/?api=1&query=${this.state.vehicle.VehicleLocation.Latitude},${this.state.vehicle.VehicleLocation.Longitude}`
+            let gmapsURL 
+            let gmapsLink = 'No Location Data'
+            if (this.state.vehicle && this.state.vehicle.VehicleLocation) { 
+                gmapsURL = `https://www.google.com/maps/search/?api=1&query=${this.state.vehicle.VehicleLocation.Latitude},${this.state.vehicle.VehicleLocation.Longitude}`
+                gmapsLink = <a href = {gmapsURL} target="_blank" rel="noopener noreferrer">
+                                Last Reported GPS Coördinates
+                            </a>
+            }
+            if (this.state.vehicle && this.state.vehicle.MonitoredCall) {
                 vehicleInfo = <div className="vehicleInfo">
                         Vehicle <span className="bold">
                             #{this.state.vehicle.VehicleRef}
@@ -48,9 +66,7 @@ class Vehicular extends React.Component {
                         Final Destination <span className="bold"> {this.state.vehicle.DestinationName}
                         </span>.
                         <br></br>
-                        <a href = {gmapsURL} target="_blank" rel="noopener noreferrer">
-                            Last Reported GPS Coördinates
-                        </a>
+                        {gmapsLink}
                         <br></br>
                         The NextStop is <span className="bold">
                             {this.state.vehicle.MonitoredCall.StopPointName}
@@ -61,7 +77,10 @@ class Vehicular extends React.Component {
                         but Arriving at <span className="bold">
                             {new Date(Date.parse(this.state.vehicle.MonitoredCall.ExpectedArrivalTime)).toLocaleTimeString()}
                         </span>
-                        <br></br>
+                        </div>
+            }
+            if (this.state.vehicle && this.state.vehicle.OnwardCalls) {
+                futureStops = <div className="future-stops">
                         Future Stops: 
                         <br></br>
                         {this.state.vehicle.OnwardCalls.OnwardCall.map(stop => {
@@ -78,7 +97,7 @@ class Vehicular extends React.Component {
                                 )
                             })
                         }
-                </div>
+                        </div>
             }
         return (
             <div>
@@ -91,9 +110,16 @@ class Vehicular extends React.Component {
                     value={this.state.vehicleNumber}
                     onChange={this.updateVehicleNumber()}
                 />
+                <input type="text"
+                    id="vehicle-number"
+                    placeholder="Agency"
+                    value={this.state.agency}
+                    onChange={this.updateAgency()}
+                />
                 <input type="submit" value="Track Vehicle" />
             </form>
             {vehicleInfo}
+            {futureStops}
             </div>
         );
     }

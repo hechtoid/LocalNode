@@ -1,6 +1,8 @@
-?!switch softlink transit into local, still git itself - only for Muni probs
+prop vehicular thru params - for easy refreh
 
-index by stopCode by adding id of index [0]
+switch softlink transit into local, still git itself
+
+#IWISHindex by stopCode by adding id of index [0] - probs only for Muni if even
 
 add Line Filter prop to anyStop
 

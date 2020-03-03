@@ -21,18 +21,23 @@ if (props.bus.MonitoredVehicleJourney.OperatorRef === "BA") {
 {new Date(Date.parse(props.bus.MonitoredVehicleJourney.MonitoredCall.AimedArrivalTime)).toLocaleTimeString()}
         </span>}
     </div>
-    )} else if (props.bus.MonitoredVehicleJourney.OperatorRef === "SF"){
+    )} else if (['SF', 'AC', 'GG', 'SM', 'MA', 'SC'].includes(props.bus.MonitoredVehicleJourney.OperatorRef)){
         return(
         <div className="bus">
             <div><span title="Track Vehicle" className="bold">
-            <Link to={{
+        { props.bus.MonitoredVehicleJourney.VehicleRef
+        ? <Link className="gps"
+                to={{
                 pathname: "/vehicular", 
                 state: {
-        vehicleNumber: props.bus.MonitoredVehicleJourney.VehicleRef
+        vehicleNumber: props.bus.MonitoredVehicleJourney.VehicleRef,
+        agency: props.bus.MonitoredVehicleJourney.OperatorRef
                         }
                 }} >
-        {props.bus.MonitoredVehicleJourney.LineRef}
-                </Link> => </span> 
+        {props.bus.MonitoredVehicleJourney.LineRef}<sup>GPS</sup>
+        </Link>
+        : <>{props.bus.MonitoredVehicleJourney.LineRef}</>
+        } => </span> 
         {props.bus.MonitoredVehicleJourney.DestinationName} 
         </div>
         {props.bus.MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime
