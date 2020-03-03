@@ -24,7 +24,7 @@ if (props.bus.MonitoredVehicleJourney.OperatorRef === "BA") {
     )} else if (props.bus.MonitoredVehicleJourney.OperatorRef === "SF"){
         return(
         <div className="bus">
-            <div><span className="bold">
+            <div><span title="Track Vehicle" className="bold">
             <Link to={{
                 pathname: "/vehicular", 
                 state: {

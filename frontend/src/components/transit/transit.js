@@ -13,7 +13,7 @@ function Transit() {
       <div className="transit-switcher">
         <div className="busemoji">
             <Link to= "/vehicular" >
-            <span role="img" aria-label="bus emoji">🚌</span>
+            <span title="Vehicle Tracker" role="img" aria-label="bus emoji">🚌</span>
             </Link>
         </div>
         <div className={
