@@ -1,3 +1,7 @@
+?!switch softlink transit into local, still git itself - only for Muni probs
+
+index by stopCode by adding id of index [0]
+
 add Line Filter prop to anyStop
 
 #switch agencyswitch to hash!
