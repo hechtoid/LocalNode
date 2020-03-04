@@ -18,7 +18,7 @@ class Vehicular extends React.Component {
     }
     loadVehicle() { 
         let vehicle = {}
-        let agency = this.state.agency ? this.stage.agency : 'SF'
+        let agency = this.state.agency ? this.state.agency.toUpperCase() : 'SF'
         axios.get(`https://api.511.org/transit/VehicleMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&agency=${agency}&format=json&vehicleID=${this.state.vehicleNumber}`)
             .then(res => {
                 vehicle = res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery.VehicleActivity
@@ -45,7 +45,7 @@ class Vehicular extends React.Component {
         }
     }
     render() {
-            let vehicleInfo = <div>no Tracked Vehicle</div>
+            let vehicleInfo = <div>No Tracked Vehicle</div>
             let futureStops
             let key = 0
             let gmapsURL 
@@ -53,17 +53,17 @@ class Vehicular extends React.Component {
             if (this.state.vehicle && this.state.vehicle.VehicleLocation) { 
                 gmapsURL = `https://www.google.com/maps/search/?api=1&query=${this.state.vehicle.VehicleLocation.Latitude},${this.state.vehicle.VehicleLocation.Longitude}`
                 gmapsLink = <a href = {gmapsURL} target="_blank" rel="noopener noreferrer">
-                                Last Reported GPS Coördinates
+                                Last Reported Coördinates
                             </a>
             }
             if (this.state.vehicle && this.state.vehicle.MonitoredCall) {
                 vehicleInfo = <div className="vehicleInfo">
                         Vehicle <span className="bold">
                             #{this.state.vehicle.VehicleRef}
-                        </span> is currently serving route  
+                        </span> is currently serving route
                         <span className="bold"> {this.state.vehicle.LineRef}</span>, 
                         <br></br>
-                        Final Destination <span className="bold"> {this.state.vehicle.DestinationName}
+                        Final Destination is <span className="bold"> {this.state.vehicle.DestinationName}
                         </span>.
                         <br></br>
                         {gmapsLink}
