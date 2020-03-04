@@ -45,8 +45,8 @@ class Vehicular extends React.Component {
         }
     }
     render() {
-            let vehicleInfo = <div>No Tracked Vehicle</div>
-            let futureStops
+            let vehicleInfo = <div className="vehicle-info">No Tracked Vehicle</div>
+            let futureStops = <div className="future-stops">No Future Stops</div>
             let key = 0
             let gmapsURL 
             let gmapsLink = 'No Location Data'
@@ -57,29 +57,30 @@ class Vehicular extends React.Component {
                             </a>
             }
             if (this.state.vehicle && this.state.vehicle.MonitoredCall) {
-                vehicleInfo = <div className="vehicleInfo">
+                vehicleInfo = <div className="vehicle-info">
                         Vehicle <span className="bold">
                             #{this.state.vehicle.VehicleRef}
                         </span> is currently serving route
                         <span className="bold"> {this.state.vehicle.LineRef}</span>, 
                         <br></br>
-                        Final Destination is <span className="bold"> {this.state.vehicle.DestinationName}
+                        Final Destination <span className="bold"> {this.state.vehicle.DestinationName}
                         </span>.
                         <br></br>
                         {gmapsLink}
                         <br></br>
-                        The NextStop is <span className="bold">
+                        NextStop: <span className="bold">
                             {this.state.vehicle.MonitoredCall.StopPointName}
                             </span>,
                         <br></br>
-                        Scheduled for <span className="bold">
+                        Scheduled <span className="bold">
                             {new Date(Date.parse(this.state.vehicle.MonitoredCall.AimedArrivalTime)).toLocaleTimeString()} </span>
-                        but Arriving at <span className="bold">
+                        <br></br>
+                        Predicted <span className="bold">
                             {new Date(Date.parse(this.state.vehicle.MonitoredCall.ExpectedArrivalTime)).toLocaleTimeString()}
                         </span>
                         </div>
             }
-            if (this.state.vehicle && this.state.vehicle.OnwardCalls) {
+            if (this.state.vehicle && this.state.vehicle.OnwardCalls && this.state.vehicle.OnwardCalls.OnwardCall[0]) {
                 futureStops = <div className="future-stops">
                         Future Stops: 
                         <br></br>
@@ -100,10 +101,9 @@ class Vehicular extends React.Component {
                         </div>
             }
         return (
-            <div>
+            <div className="vehicular">
                 <form onSubmit={this.loadVehicle}>
-                <a href="https://www.sfmta.com/getting-around/muni/muni-feedback" target="_blank" rel="noopener noreferrer">
-                Vehicle Number</a>:
+                
             <input type="text"
                     id="vehicle-number"
                     placeholder="Vehicle Number"
@@ -111,13 +111,15 @@ class Vehicular extends React.Component {
                     onChange={this.updateVehicleNumber()}
                 />
                 <input type="text"
-                    id="vehicle-number"
+                    id="vehicle-agency"
                     placeholder="Agency"
                     value={this.state.agency}
                     onChange={this.updateAgency()}
                 />
                 <input type="submit" value="Track Vehicle" />
             </form>
+            <a href="https://www.sfmta.com/getting-around/muni/muni-feedback" className="vehicle-number" target="_blank" rel="noopener noreferrer">
+                Vehicle Number Locations (SFMUNI)</a>
             {vehicleInfo}
             {futureStops}
             </div>

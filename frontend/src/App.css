@@ -272,6 +272,16 @@ hr{
 .update:active{
     color: purple;
 }
+a.vehicle-number{
+    font-size: 10px;
+    margin: 0 0 10px 15px;
+}
 #vehicle-number{
-    margin: 5px 10px 10px 10px;
+    margin: 5px 10px 0px 10px;
+}
+.vehicle-info{
+    margin: 15px 5px 5px 5px;
+}
+.future-stops{
+    margin-left: 5px;
 }
