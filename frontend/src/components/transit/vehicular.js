@@ -4,7 +4,7 @@ import axios from 'axios';
 class Vehicular extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.location.state || {}
+        this.state = this.props.location.state || {vehicleNumber: '', agency: ''}
     
         this.loadVehicle = this.loadVehicle.bind(this)
         this.updateVehicleNumber = this.updateVehicleNumber.bind(this)
@@ -17,7 +17,7 @@ class Vehicular extends React.Component {
     }
     loadVehicle() { 
         let vehicle = {}
-        let agency = this.state.agency ? this.state.agency.toUpperCase() : 'SF'
+        let agency = this.state.agency.toUpperCase()
         axios.get(`https://api.511.org/transit/VehicleMonitoring?api_key=72939361-85f9-4019-aa55-d62e4e7e2e59&agency=${agency}&format=json&vehicleID=${this.state.vehicleNumber}`)
             .then(res => {
                 vehicle = res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery.VehicleActivity
@@ -71,10 +71,10 @@ class Vehicular extends React.Component {
                             {this.state.vehicle.MonitoredCall.StopPointName}
                             </span>,
                         <br></br>
-                        Scheduled <span className="bold">
+                        Scheduled for <span className="bold">
                             {new Date(Date.parse(this.state.vehicle.MonitoredCall.AimedArrivalTime)).toLocaleTimeString()} </span>
                         <br></br>
-                        Predicted <span className="bold">
+                        Predicted at <span className="bold">
                             {new Date(Date.parse(this.state.vehicle.MonitoredCall.ExpectedArrivalTime)).toLocaleTimeString()}
                         </span>
                         </div>
@@ -102,23 +102,23 @@ class Vehicular extends React.Component {
         return (
             <div className="vehicular">
                 <form onSubmit={this.loadVehicle}>
-                
-            <input type="text"
+                <input type="text"
+                    id="vehicle-agency"
+                    placeholder="Agency Code"
+                    value={this.state.agency}
+                    onChange={this.updateAgency()}
+                />
+                 <input type="text"
                     id="vehicle-number"
                     placeholder="Vehicle Number"
                     value={this.state.vehicleNumber}
-                    onChange={this.updateVehicleNumber}
+                    onChange={this.updateVehicleNumber()}
                 />
-                <input type="text"
-                    id="vehicle-agency"
-                    placeholder="Agency"
-                    value={this.state.agency}
-                    onChange={this.updateAgency}
-                />
+                <br></br>
                 <input type="submit" value="Track Vehicle" />
-            </form>
-            <a href="https://www.sfmta.com/getting-around/muni/muni-feedback" className="vehicle-number" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.sfmta.com/getting-around/muni/muni-feedback" target="_blank" rel="noopener noreferrer">
                 Vehicle Number Locations (SFMUNI)</a>
+            </form>
             {vehicleInfo}
             {futureStops}
             </div>
