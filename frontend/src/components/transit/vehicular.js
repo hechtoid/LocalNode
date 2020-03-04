@@ -5,8 +5,7 @@ class Vehicular extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.props.location.state || {}
-           
-        
+    
         this.loadVehicle = this.loadVehicle.bind(this)
         this.updateVehicleNumber = this.updateVehicleNumber.bind(this)
         this.updateAgency = this.updateAgency.bind(this)
@@ -14,7 +13,7 @@ class Vehicular extends React.Component {
 
     componentDidMount() {
         this.loadVehicle()
-        document.title="transitYourself - Vehicle Tracker"
+        document.title="transitYourself - Vehicular"
     }
     loadVehicle() { 
         let vehicle = {}
@@ -28,7 +27,7 @@ class Vehicular extends React.Component {
             })
     }
 
-    updateVehicleNumber() {
+    updateVehicleNumber(e) {
         return e => {
             let vehicleNumber = e.currentTarget.value
             this.setState({
@@ -36,7 +35,7 @@ class Vehicular extends React.Component {
             })
         }
     }
-    updateAgency() {
+    updateAgency(e) {
         return e => {
             let agency = e.currentTarget.value
             this.setState({
@@ -108,13 +107,13 @@ class Vehicular extends React.Component {
                     id="vehicle-number"
                     placeholder="Vehicle Number"
                     value={this.state.vehicleNumber}
-                    onChange={this.updateVehicleNumber()}
+                    onChange={this.updateVehicleNumber}
                 />
                 <input type="text"
                     id="vehicle-agency"
                     placeholder="Agency"
                     value={this.state.agency}
-                    onChange={this.updateAgency()}
+                    onChange={this.updateAgency}
                 />
                 <input type="submit" value="Track Vehicle" />
             </form>
