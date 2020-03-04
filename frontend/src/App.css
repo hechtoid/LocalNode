@@ -298,3 +298,51 @@ hr{
     top: -15px;
     left: 15px;
 }
+#YL-N{
+    border-left: 5px solid yellow;
+    border-right: 5px solid yellow;
+}
+#YL-S{
+    border-left: 5px solid yellow;
+    border-right: 5px solid yellow;
+}
+#OR-N{
+    border-left: 5px solid orange;
+    border-right: 5px solid orange;
+}
+#OR-S{
+    border-left: 5px solid orange;
+    border-right: 5px solid orange;
+}
+#BL-N{
+    border-left: 5px solid blue;
+    border-right: 5px solid blue;
+}
+#BL-S{
+    border-left: 5px solid blue;
+    border-right: 5px solid blue;
+}
+#GN-N{
+    border-left: 5px solid green;
+    border-right: 5px solid green;
+}
+#GN-S{
+    border-left: 5px solid green;
+    border-right: 5px solid green;
+}
+#RD-N{
+    border-left: 5px solid red;
+    border-right: 5px solid red;
+}
+#RD-S{
+    border-left: 5px solid red;
+    border-right: 5px solid red;
+}
+#PR-N{
+    border-left: 5px solid purple;
+    border-right: 5px solid purple;
+}
+#PR-S{
+    border-left: 5px solid purple;
+    border-right: 5px solid purple;
+}
