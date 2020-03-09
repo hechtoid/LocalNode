@@ -40,6 +40,21 @@ app.get('/react/*', (req, res) => {
 app.get('/mpcstop/', (req, res) => {
  shell.exec('./cgi/mpcstop')
 })
+
+app.use(express.static(path.join(__dirname, 'tv')));
+ app.get('/tv', (req, res) => {
+ res.sendFile(path.resolve(__dirname, 'tv', 'index.html'));
+})
+
+app.get('/tv/on', (req, res) => {
+ shell.exec('./cgi/hdmiON')
+ res.sendStatus(204)
+})
+app.get('/tv/off', (req, res) => {
+ shell.exec('./cgi/hdmiOFF')
+ res.sendStatus(204)
+})
+
 app.get('/weathercron/', (req, res) => {
   weathercron()
 })

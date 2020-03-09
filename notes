@@ -1,6 +1,11 @@
 TO ASK COACHES
-prop vehicular thru params? - for easy refresh
+best practice for multi word filter 'search'kludge or .any?
+prop vehicular thru params? - for easy refresh/works anyways?
 cookies/backend?
+
+
+embed map at least on vehicular
+show countdown at least on first
 
 switch softlink transit into local, still git itself
 
@@ -22,7 +27,9 @@ add Line Filter prop to anyStop
 
 use schedules
 
-add map/GPS
+#add map
+
+user GPS
 
 #update stopCode if filter.length===1
 
