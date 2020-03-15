@@ -39,11 +39,12 @@ app.get('/react/*', (req, res) => {
 
 app.get('/mpcstop/', (req, res) => {
  shell.exec('./cgi/mpcstop')
+ res.sendStatus(204)
 })
 
-app.use(express.static(path.join(__dirname, 'tv')));
+app.use(express.static(path.join(__dirname, 'static')));
  app.get('/tv', (req, res) => {
- res.sendFile(path.resolve(__dirname, 'tv', 'index.html'));
+ res.sendFile(path.resolve(__dirname, 'static', 'tv', 'index.html'));
 })
 
 app.get('/tv/on', (req, res) => {

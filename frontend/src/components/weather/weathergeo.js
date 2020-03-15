@@ -33,7 +33,7 @@ class WeatherGeo extends React.Component {
         <br></br>
                         {hour.apparentTemperature}° but {hour.temperature}°.
         <br></br>
-                        {hour.summary}{hour.precipProbability === 0 ?  '' :`, ${hour.precipProbability * 100}% chance of precipitation.`}
+                        {hour.summary}{hour.precipProbability === 0 ?  '' :`, ${hour.precipProbability.toString().slice(2)}% chance of precipitation.`}
         <br></br>
       </div>
                 )
