@@ -8,6 +8,7 @@ import TransitStop from './components/transit/transitstop'
 import Vehicular from './components/transit/vehicular'
 import AA from './components/transit/aa'
 import AnyStopWildCard from './components/transit/anyStopWildCard'
+import Woa from './components/woa/woa'
 
 function App() {
   document.title="🌩️🚌"
@@ -21,6 +22,7 @@ function App() {
       <Route exact path="/transitstop" component={TransitStop} />
       <Route exact path="/vehicular" component={Vehicular} />
       <Route exact path="/aa" component={AA} />
+      <Route exact path="/woa" component={Woa} />
       <Route path="/anystop/:agency/:stop" render={(props) => (
         <AnyStopWildCard {...props} /> )}
       />

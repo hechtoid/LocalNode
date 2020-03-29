@@ -13,6 +13,8 @@ const weather = require("./routes/api/weather")
 const weathercron = require("./routes/api/weathercron")
 //const transit = require("./routes/api/transit")
 
+const woa = require("./routes/api/woa")
+
 app.listen(port, () => console.log(`${new Date().toUTCString()} Server is running on port ${port}`));
 
 app.get("/", function (req, res) {
@@ -27,6 +29,8 @@ app.use(bodyParser.json());
 // for when running local react dev server
 app.use("/api/weather", weather);
 app.use("/react/api/weather", weather);
+
+app.use("/api/woa", woa);
 
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.get('/react/*', (req, res) => {
