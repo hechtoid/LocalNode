@@ -13,6 +13,8 @@ const weather = require("./routes/api/weather")
 const weathercron = require("./routes/api/weathercron")
 //const transit = require("./routes/api/transit")
 
+const control = require("./routes/control/control")
+
 const woa = require("./routes/api/woa")
 
 app.listen(port, () => console.log(`${new Date().toUTCString()} Server is running on port ${port}`));
@@ -30,6 +32,8 @@ app.use(bodyParser.json());
 app.use("/api/weather", weather);
 app.use("/react/api/weather", weather);
 
+app.use("/control", control);
+
 app.use("/api/woa", woa);
 
 app.use(express.static(path.join(__dirname, 'frontend/build')));
@@ -37,28 +41,17 @@ app.get('/react/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 })
 
-// cron.schedule('* 0,30 * * * *', () => {
-//   weathercron
-// })
-
 app.get('/mpcstop/', (req, res) => {
  shell.exec('./cgi/mpcstop')
  res.sendStatus(204)
 })
 
 app.use(express.static(path.join(__dirname, 'static')));
- app.get('/tv', (req, res) => {
- res.sendFile(path.resolve(__dirname, 'static', 'tv', 'index.html'));
+ app.get('/localcontrol', (req, res) => {
+ res.sendFile(path.resolve(__dirname, 'static', 'localcontrol', 'index.html'));
 })
 
-app.get('/tv/on', (req, res) => {
- shell.exec('./cgi/hdmiON')
- res.sendStatus(204)
-})
-app.get('/tv/off', (req, res) => {
- shell.exec('./cgi/hdmiOFF')
- res.sendStatus(204)
-})
+
 
 app.get('/weathercron/', (req, res) => {
   weathercron()

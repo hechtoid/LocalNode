@@ -1,0 +1,11 @@
+{
+    "files.exclude": {
+        "**/media": true
+    },
+    "files.watcherExclude": {
+        "**/media/**": true
+    },
+    "search.exclude": {
+        "**/media": true
+    }
+}

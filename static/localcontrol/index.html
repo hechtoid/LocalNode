@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Local Control</title>
+<meta charset="utf-8">
+</head>
+<style>
+	body {
+		height: 99vh;
+	}
+	#buttons {
+		height: 100%;
+		text-align: center;
+	}
+	form button{
+		width: 90%;
+
+	}
+	#off {
+		color: red;
+		font-size: 69px;
+		font-weight: 900;
+		height: 33vh;
+		margin: 10px;
+
+	}
+	#on {
+		color: green;
+		font-size: 49px;
+		font-weight: 900;
+		margin: 10px;
+		margin-top: 20px;
+		height: 16vh;
+	}	
+
+	#fog {
+		font-size: 82px;
+		height: 18vh;
+		margin: 10px;
+
+	}
+	#rehome {
+		font-size: 69px;
+		height: 11vh;
+		margin: 10px;
+
+	}
+
+</style>
+
+
+
+
+<body>
+	
+	<div id="buttons">
+		<form method="get" action="/control/tv/off">
+			<button id="off" >OFF</button>
+		</form>
+		
+		<form method="get" action="/control/tv/on">
+			<button id="on" >ON</button>
+		</form>
+		
+		<form method="get" action="/control/fog/me">
+			<button id="fog" >🌁</button>
+		</form>
+
+		<form method="get" action="/control/rehome">
+			<button id="rehome" >🏡</button>
+		</form>
+	
+	</div>
+
+</body>
