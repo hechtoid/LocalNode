@@ -3,9 +3,10 @@ const router = express.Router();
 const axios = require("axios");
 
 router.get("/:term?", (req, res) => {
-    console.log(`WOA DUDE...${req.params.term}`)
+    let term = req.params.term ? req.params.term : ' '
+    console.log(`WOA DUDE...${term}`)
     let queryTerm = () => {
-        let url = `http://google.com/complete/search?q=${req.params.term}&client=firefox`
+        let url = `http://google.com/complete/search?q=${term}&client=firefox`
         return axios.get(url).then(response => response.data);
     };
     queryTerm().then(data => {

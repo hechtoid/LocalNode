@@ -3,6 +3,10 @@ const router = express.Router();
 const axios = require("axios");
 const sqlite3 = require('sqlite3').verbose();
 
+router.get("/", (req, res) => {
+    res.json('Welcome to the Weather API')
+})
+
 router.get("/spots", (req, res) => {
     let db = new sqlite3.Database('./db/weather.db', (err) => {
         if (err) {
