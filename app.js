@@ -17,9 +17,11 @@ app.listen(port, () =>
   console.log(`${new Date().toUTCString()} Server is running on port ${port}`)
 );
 app.get("/*", function (req, res, next) {
-  console.log(`${new Date().toUTCString()} ${req.ip} [${req.ipInfo.city}] accessed ${req.originalUrl}`);
-  // res.sendStatus(304);
+  console.log(`${new Date().toUTCString()} ${req.ip} /${req.rawHeaders[3]} @${req.ipInfo.city} => ${req.originalUrl}`);
   next()
+})
+app.get('/', (req, res) => {
+	res.sendStatus(304)
 })
 
 app.use("/api", api);
@@ -31,10 +33,10 @@ app.use(express.static(path.join(__dirname, 'static')));
  res.sendFile(path.resolve(__dirname, 'static', 'localcontrol', 'index.html'));
 })
 
-app.use(express.static(path.join(__dirname, 'frontend/build')));
-app.get('/react/*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-})
+//app.use(express.static(path.join(__dirname, 'frontend/build')));
+//app.get('/react/*', (req, res) => {
+//  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+//})
 
 app.use('/media', serveIndex(path.join(__dirname, 'media'), {'view' : 'details'}))
 app.use('/media', express.static(path.join(__dirname, 'media')));

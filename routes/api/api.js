@@ -9,5 +9,8 @@ const woa = require("./woa")
 router.use('/weather', weather)
 
 router.use('/woa', woa)
-
+router.get('/req', (req, res) => {
+	res.send('a req')
+	console.log(req.rawHeaders)
+})
 module.exports = router;
