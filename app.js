@@ -17,11 +17,11 @@ app.listen(port, () =>
   console.log(`${new Date().toUTCString()} Server is running on port ${port}`)
 );
 app.get("/*", function (req, res, next) {
-  console.log(`${new Date().toUTCString()} ${req.ip} /${req.rawHeaders[3]} @${req.ipInfo.city} => ${req.originalUrl}`);
+  console.log(`${new Date().toUTCString()} ${req.ip} ${req.rawHeaders[3]} ${req.ipInfo.city} => ${req.originalUrl}`);
   next()
 })
 app.get('/', (req, res) => {
-	res.sendStatus(304)
+//	res.sendStatus(304)
 })
 
 app.use("/api", api);
