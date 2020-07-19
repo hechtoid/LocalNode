@@ -1,20 +1,21 @@
 const express = require("express");
 const router = express.Router();
-
 const shell = require('shelljs')
 
+const mpc = require('./mpc')
+
 router.get('/tv/on', (req, res) => {
-    shell.exec('hdmiON')
+    shell.exec('hdmiON >/dev/null 2>&1')
     res.sendStatus(204)
    })
 router.get('/tv/off', (req, res) => {
-    shell.exec('hdmiOFF')
+    shell.exec('hdmiOFF >/dev/null 2>&1')
     res.sendStatus(204)
    })
 
 router.get('/fog/me', (req, res) => {
     res.sendStatus(204)
-    shell.exec('fogme')
+    shell.exec('fogme >/dev/null 2>&1')
 })
 
 router.get('/rehome', (req, res) => {
@@ -22,10 +23,8 @@ router.get('/rehome', (req, res) => {
     res.sendStatus(204)
 })
 
-router.get('/mpcstop/', (req, res) => {
-    shell.exec('mpc stop')
-    res.sendStatus(204)
-   })
-   
+
+router.use('/mpc', mpc)
+    
 
 module.exports = router;
