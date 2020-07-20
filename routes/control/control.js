@@ -3,6 +3,7 @@ const router = express.Router();
 const shell = require('shelljs')
 
 const mpc = require('./mpc')
+const alsa = require('./alsa')
 
 router.get('/tv/on', (req, res) => {
     shell.exec('hdmiON >/dev/null 2>&1')
@@ -25,6 +26,6 @@ router.get('/rehome', (req, res) => {
 
 
 router.use('/mpc', mpc)
-    
+router.use('/alsa', alsa)
 
 module.exports = router;
