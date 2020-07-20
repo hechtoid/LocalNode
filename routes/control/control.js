@@ -9,7 +9,7 @@ router.get('/tv/on', (req, res) => {
     res.sendStatus(204)
    })
 router.get('/tv/off', (req, res) => {
-    shell.exec('hdmiOFF >/dev/null 2>&1')
+    shell.exec('hdmiOFF', {silent: true})
     res.sendStatus(204)
    })
 
