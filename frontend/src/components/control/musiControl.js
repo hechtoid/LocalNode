@@ -74,6 +74,11 @@ class MusiControl extends React.Component {
                 this.setState({ state, volume, repeat, single })
             })
     }
+    refresh = () => {
+        this.init()
+        this.bass()
+        this.treble()
+    }
     volumeUp = () => {
         axios.get('api/control/mpc/volumeup')
             .then(res => {
@@ -114,7 +119,9 @@ class MusiControl extends React.Component {
     render() {
         return (
             <div className="musicontrol">
-                Set the Controls for the Card of the Pi
+                <button id="refresh" onClick={this.refresh}> 
+                    Set the Controls for the Card of the Pi
+                </button> 
                 <div className="mixer">
                     <div className="bass">
                         <button className="up" onClick={this.bassUp}>
@@ -148,7 +155,7 @@ class MusiControl extends React.Component {
                     <button className={this.state.repeat?'on':'off'} onClick={this.repeat}>
                         Repeat 
                     </button>
-                    <button className={this.state.state==="playing"?'off':'on'} onClick={this.toggle}>
+                    <button className={this.state.state==="playing"?'red':'on'} onClick={this.toggle}>
                         {this.state.state==="playing"?"Pause":"Play"}
                     </button>
                     <button className={this.state.single?'on':'off'} onClick={this.single}>

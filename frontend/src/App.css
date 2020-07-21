@@ -364,6 +364,11 @@ hr{
     align-items: center;
     justify-content: center;
 }
+#refresh{
+    font-size: 18px;
+    font-weight: 500;
+    height: 12%;
+}
 .mixer{
     display: flex;
     margin: 5px auto;
@@ -443,4 +448,7 @@ hr{
 }
 .off {
     color: black;
+}
+.red {
+    color: red;
 }
