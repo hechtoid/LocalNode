@@ -351,13 +351,13 @@ hr{
     border-right: 5px solid gray;
 }
 
-.alsacontrol{
+.musicontrol{
     border-radius: 5px;
     background: lightblue;
     margin: 10px auto;
     padding: 5px;
     width: 90vw;
-    height: 80vh;
+    height: 90vh;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -392,7 +392,7 @@ hr{
 .down {
     color: red;
 }
-.mixer button {
+.musicontrol button {
     height: 40%;
     width: 80%;
     border-radius: 5px;
@@ -406,8 +406,21 @@ hr{
     background-color: lightgray;
     transition: 0.1s;
 }
-.mixer button:hover {
+.musicontrol button:hover {
     background-color: gray;
     transition: 0.1s;
     cursor: pointer;
+}
+.master-volume {
+    border: 2px solid darkblue;
+    border-radius: 3px;
+    width: 90%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+}
+.master-volume button {
+    width: 30%;
+    height: 80%;
+
 }

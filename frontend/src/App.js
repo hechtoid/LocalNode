@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 // import { HashRouter as Router, withRouter, Route, Switch, Link } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
-import AlsaControl from './components/control/alsaControl'
+import MusiControl from './components/control/musiControl'
 import WeatherBox from './components/weather/weatherbox'
 import Transit from './components/transit/transit'
 import TransitStop from './components/transit/transitstop'
@@ -19,7 +19,7 @@ function App() {
       <Route exact path="/weather">
         <WeatherBox />
       </Route> 
-      <Route path="/alsacontrol" component={AlsaControl} />
+      <Route path="/musicontrol" component={MusiControl} />
       <Route path="/transit" component={Transit} />
       <Route exact path="/transitstop" component={TransitStop} />
       <Route exact path="/vehicular" component={Vehicular} />
