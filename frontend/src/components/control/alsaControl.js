@@ -13,12 +13,12 @@ class AlsaControl extends React.Component {
     componentDidMount() {
         this.treble()
         this.bass()
+        document.title='🔉 🎛️ 🔊'
     }
     treble = () => {
         axios.get('api/control/alsa/treble')
             .then(res => {
                 const treble = res.data;
-                console.log( treble )
                 this.setState({ treble });
             })
     }
@@ -26,7 +26,6 @@ class AlsaControl extends React.Component {
         axios.get('api/control/alsa/trebleup')
             .then(res => {
                 const treble = res.data;
-                console.log( treble )
                 this.setState({ treble });
             })
     }
@@ -34,7 +33,6 @@ class AlsaControl extends React.Component {
         axios.get('api/control/alsa/trebledown')
             .then(res => {
                 const treble = res.data;
-                console.log( treble )
                 this.setState({ treble });
             })
     }
@@ -42,7 +40,6 @@ class AlsaControl extends React.Component {
         axios.get('api/control/alsa/bass')
             .then(res => {
                 const bass = res.data;
-                console.log( bass )
                 this.setState({ bass });
             })
     }
@@ -50,7 +47,6 @@ class AlsaControl extends React.Component {
         axios.get('api/control/alsa/bassup')
             .then(res => {
                 const bass = res.data;
-                console.log( bass )
                 this.setState({ bass });
             })
     }
@@ -58,7 +54,6 @@ class AlsaControl extends React.Component {
         axios.get('api/control/alsa/bassdown')
             .then(res => {
                 const bass = res.data;
-                console.log( bass )
                 this.setState({ bass });
             })
     }
@@ -74,24 +69,22 @@ class AlsaControl extends React.Component {
                 Set the Controls for the Heart of the Pi
                 <div className="mixer">
                     <div className="bass">
-                        Bass
                         <button className="up" onClick={this.bassup}>
-                            UP
+                               🔊 <br></br> UP 
                         </button>
-                        {this.state.bass}
+                        Bass:{this.state.bass} 🔊
                         <button className="down" onClick={this.bassdown}>
-                            DOWN
+                            DOWN <br></br> 🔉 
                         </button>
 
                     </div>
                     <div className="treble">
-                        Treble
                         <button className="up" onClick={this.trebleup}>
-                            UP
+                            🔊 <br></br> UP
                         </button>
-                        {this.state.treble}
+                        Treble:{this.state.treble} 🔊
                         <button className="down" onClick={this.trebledown}>
-                            DOWN
+                            DOWN <br></br> 🔉
                         </button>
                     </div>
                 </div>

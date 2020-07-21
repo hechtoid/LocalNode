@@ -354,28 +354,37 @@ hr{
 .alsacontrol{
     border-radius: 5px;
     background: lightblue;
-    margin: 10px;
+    margin: 10px auto;
     padding: 5px;
-    width: 80vw;
+    width: 90vw;
     height: 80vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .mixer{
     display: flex;
+    margin: 5px auto;
+    width: 100%;
 
 }
 .bass{
-    width: 30vw;
+    width: 100%;
     border: 2px solid darkblue;
     border-radius: 3px;
-    height: 50vh;
+    height: 70vh;
     text-align: center;
+    margin: 5px;
 }
 .treble{
-    width: 30vw;
+    width: 100%;
     border: 2px solid darkblue;
     border-radius: 3px;
-    height: 50vh;
+    height: 70vh;
     text-align: center;
+    margin: 5px;
 }
 .up {
     color: green;
@@ -386,16 +395,19 @@ hr{
 .mixer button {
     height: 40%;
     width: 80%;
-    border: 1px solid black;
     border-radius: 5px;
     margin: 5px auto;
+    margin-top: 10px;
     align-items: center;
     justify-content: center;
     display: flex;
     font-size: 36px;
     font-weight: 900;
-    background-color: gray;
+    background-color: lightgray;
+    transition: 0.1s;
 }
 .mixer button:hover {
-    background-color: lightgray;
+    background-color: gray;
+    transition: 0.1s;
+    cursor: pointer;
 }
