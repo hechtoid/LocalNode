@@ -374,7 +374,7 @@ hr{
     width: 100%;
     border: 2px solid darkblue;
     border-radius: 3px;
-    height: 70vh;
+    height: 50vh;
     text-align: center;
     margin: 5px;
 }
@@ -382,7 +382,7 @@ hr{
     width: 100%;
     border: 2px solid darkblue;
     border-radius: 3px;
-    height: 70vh;
+    height: 50vh;
     text-align: center;
     margin: 5px;
 }
@@ -422,5 +422,25 @@ hr{
 .master-volume button {
     width: 30%;
     height: 80%;
-
+}
+.singles{
+    margin-top: 5px;
+    border: 2px solid darkblue;
+    border-radius: 3px;
+    width: 90%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    
+}
+.singles button {
+    font-size: 23px;
+    height: 80%;
+    margin: 5px;
+}
+.on {
+    color: green;
+}
+.off {
+    color: black;
 }

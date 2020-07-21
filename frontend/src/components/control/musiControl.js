@@ -7,12 +7,15 @@ class MusiControl extends React.Component {
         this.state = {
             treble: '%',
             bass: '%',
-            master: 0
+            volume: 0,
+            state: '',
+            repeat: false,
+            single: false,
         }
     }
 
     componentDidMount() {
-        this.master()
+        this.init()
         this.treble()
         this.bass()
         document.title='🔉 🎛️ 🔊'
@@ -60,25 +63,50 @@ class MusiControl extends React.Component {
             })
     }
 
-    master = () => {
-        axios.get('api/control/mpc/volume')
+    init = () => {
+        axios.get('api/control/mpc/')
             .then(res => {
-                const master = res.data;
-                this.setState({ master })
+                const mpc = res.data;
+                const state = mpc.match(/\[(.*?)\]/)[1]
+                const volume = mpc.match(/volume:\ (.*?)%/)[1]
+                const repeat = mpc.match(/repeat:\ (.*?)\ /)[1] === "on" ? true : false
+                const single = mpc.match(/single:\ (.*?)\ /)[1] === "on" ? true : false
+                this.setState({ state, volume, repeat, single })
             })
     }
-    masterUp = () => {
+    volumeUp = () => {
         axios.get('api/control/mpc/volumeup')
             .then(res => {
-                const master = res.data;
-                this.setState({ master })
+                const volume = res.data;
+                this.setState({ volume })
             })
     }
-    masterDown = () => {
+    volumeDown = () => {
         axios.get('api/control/mpc/volumedown')
             .then(res => {
-                const master = res.data;
-                this.setState({ master })
+                const volume = res.data;
+                this.setState({ volume })
+            })
+    }
+    repeat = () => {
+        axios.get('api/control/mpc/repeat')
+            .then(res => {
+                const repeat = res.data === "on" ? true : false
+                this.setState({ repeat })
+            })
+    }
+    toggle = () => {
+        axios.get('api/control/mpc/toggle')
+            .then(res => {
+                const state = res.data
+                this.setState({ state })
+            })
+    }
+    single = () => {
+        axios.get('api/control/mpc/single')
+            .then(res => {
+                const single = res.data === "on" ? true : false
+                this.setState({ single })
             })
     }
 
@@ -108,13 +136,25 @@ class MusiControl extends React.Component {
                     </div>
                 </div>
                 <div className="master-volume">
-                        <button className="down" onClick={this.masterDown}>
+                        <button className="down" onClick={this.volumeDown}>
                             🔉
                         </button>
-                    Master: {this.state.master}%
-                        <button className="up" onClick={this.masterUp}>
+                    Master: {this.state.volume}%
+                        <button className="up" onClick={this.volumeUp}>
                             🔊
                         </button>
+                </div>
+                <div className="singles">
+                    <button className={this.state.repeat?'on':'off'} onClick={this.repeat}>
+                        Repeat 
+                    </button>
+                    <button className={this.state.state==="playing"?'off':'on'} onClick={this.toggle}>
+                        {this.state.state==="playing"?"Pause":"Play"}
+                    </button>
+                    <button className={this.state.single?'on':'off'} onClick={this.single}>
+                        Single
+                    </button>
+
                 </div>
 
             </div>
