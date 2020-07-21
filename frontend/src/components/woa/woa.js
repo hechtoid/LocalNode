@@ -6,7 +6,7 @@ class Woa extends React.Component {
         super(props);
         this.state = {
             query: '',
-           results: [],
+            results: [],
         }
         this.suggest = this.suggest.bind(this)
     }

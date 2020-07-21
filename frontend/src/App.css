@@ -350,3 +350,52 @@ hr{
     border-left: 5px solid gray;
     border-right: 5px solid gray;
 }
+
+.alsacontrol{
+    border-radius: 5px;
+    background: lightblue;
+    margin: 10px;
+    padding: 5px;
+    width: 80vw;
+    height: 80vh;
+}
+.mixer{
+    display: flex;
+
+}
+.bass{
+    width: 30vw;
+    border: 2px solid darkblue;
+    border-radius: 3px;
+    height: 50vh;
+    text-align: center;
+}
+.treble{
+    width: 30vw;
+    border: 2px solid darkblue;
+    border-radius: 3px;
+    height: 50vh;
+    text-align: center;
+}
+.up {
+    color: green;
+}
+.down {
+    color: red;
+}
+.mixer button {
+    height: 40%;
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 36px;
+    font-weight: 900;
+    background-color: gray;
+}
+.mixer button:hover {
+    background-color: lightgray;
+}
