@@ -19,7 +19,7 @@ router.get('/volumeup', (req, res) => {
 })
 router.get('/volumedown', (req, res) => {
     const { stdout, stderr, code } = shell.exec('mpc volume -1', { silent: true })
-    res.send(`${stdout.match(/volume:\ (.*?)/)[1]}`)
+    res.send(`${stdout.match(/volume:\ (.*?)%/)[1]}`)
 })
 router.get('/repeat', (req, res) => {
     const { stdout, stderr, code } = shell.exec('mpc repeat', { silent: true })

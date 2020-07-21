@@ -11,6 +11,7 @@ class MusiControl extends React.Component {
             state: '',
             repeat: false,
             single: false,
+            disabled: false
         }
     }
 
@@ -28,17 +29,19 @@ class MusiControl extends React.Component {
             })
     }
     trebleUp = () => {
+        this.setState( {disabled: true})
         axios.get('api/control/alsa/trebleup')
             .then(res => {
                 const treble = res.data;
-                this.setState({ treble });
+                this.setState({ treble, disabled: false });
             })
     }
     trebleDown = () => {
+        this.setState( {disabled: true})
         axios.get('api/control/alsa/trebledown')
             .then(res => {
                 const treble = res.data;
-                this.setState({ treble });
+                this.setState({ treble, disabled: false });
             })
     }
     bass = () => {
@@ -49,17 +52,19 @@ class MusiControl extends React.Component {
             })
     }
     bassUp = () => {
+        this.setState( {disabled: true})
         axios.get('api/control/alsa/bassup')
             .then(res => {
                 const bass = res.data;
-                this.setState({ bass });
+                this.setState({ bass, disabled: false });
             })
     }
     bassDown = () => {
+        this.setState( {disabled: true})
         axios.get('api/control/alsa/bassdown')
             .then(res => {
                 const bass = res.data;
-                this.setState({ bass });
+                this.setState({ bass, disabled: false });
             })
     }
 
@@ -122,24 +127,29 @@ class MusiControl extends React.Component {
                 <button id="refresh" onClick={this.refresh}> 
                     Set the Controls for the Card of the Pi
                 </button> 
+                <div className="mixer-box">
                 <div className="mixer">
                     <div className="bass">
-                        <button className="up" onClick={this.bassUp}>
+                        <button className="up" onClick={this.bassUp} disabled={this.state.disabled}>
                                🔊 <br></br> UP 
                         </button>
-                        Bass: {this.state.bass} 🔊
-                        <button className="down" onClick={this.bassDown}>
+                        Bass: {this.state.bass} 🔊 
+                        <button className="down" onClick={this.bassDown} disabled={this.state.disabled}>
                             DOWN <br></br> 🔉 
                         </button>
                     </div>
                     <div className="treble">
-                        <button className="up" onClick={this.trebleUp}>
+                        <button className="up" onClick={this.trebleUp} disabled={this.state.disabled}>
                             🔊 <br></br> UP
                         </button>
                         Treble: {this.state.treble} 🔊
-                        <button className="down" onClick={this.trebleDown}>
+                        <button className="down" onClick={this.trebleDown} disabled={this.state.disabled}>
                             DOWN <br></br> 🔉
                         </button>
+                    </div>
+                </div>
+                    <div className="tuning">
+                        {this.state.disabled?'Tuning...Standby':''}
                     </div>
                 </div>
                 <div className="master-volume">

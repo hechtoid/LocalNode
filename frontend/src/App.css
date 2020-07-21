@@ -373,6 +373,16 @@ hr{
     display: flex;
     margin: 5px auto;
     width: 100%;
+}
+.mixer-box{
+    width: 100%;
+}
+.tuning {
+    height: 12px;
+    position: relative;
+    top: -200px;
+    font-weight: 900;
+    font-size: 42px;
 
 }
 .bass{
@@ -394,6 +404,12 @@ hr{
 .up {
     color: green;
 }
+.up:disabled {
+    color: darkgray
+}
+.down:disabled {
+    color: darkgray
+}    
 .down {
     color: red;
 }
@@ -415,6 +431,11 @@ hr{
     background-color: gray;
     transition: 0.1s;
     cursor: pointer;
+}
+.musicontrol button:disabled:hover {
+    background-color: lightgray;
+    transition: 0.1s;
+    cursor: auto;
 }
 .master-volume {
     border: 2px solid darkblue;
