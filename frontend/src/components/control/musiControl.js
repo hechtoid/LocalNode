@@ -16,7 +16,7 @@ class MusiControl extends React.Component {
     }
 
     componentDidMount() {
-        this.init()
+        this.mpcinit()
         this.treble()
         this.bass()
         document.title='🔉 🎛️ 🔊'
@@ -68,7 +68,7 @@ class MusiControl extends React.Component {
             })
     }
 
-    init = () => {
+    mpcinit = () => {
         axios.get('api/control/mpc/')
             .then(res => {
                 const mpc = res.data;
@@ -80,7 +80,7 @@ class MusiControl extends React.Component {
             })
     }
     refresh = () => {
-        this.init()
+        this.mpcinit()
         this.bass()
         this.treble()
     }
