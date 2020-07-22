@@ -13,6 +13,11 @@ router.get('/', (req, res) => {
 //})
 // /gaping security hole
 
+router.get('/nice', (req, res) => {
+    const { stdout, stderr, code } = shell.exec(`mpc -f "[%album%][ ##%track%]:[ %artist%[ #& %albumartist%][ + %performer%][: %composer%]'s][ %title%] #[[%date%]#]|[%file%]"|head -1`, { silent: true })
+    res.send(stdout)
+})
+
 router.get('/volumeup', (req, res) => {
     const { stdout, stderr, code } = shell.exec('mpc volume +1', { silent: true })
     res.send(`${stdout.match(/volume:\ (.*?)%/)[1]}`)

@@ -9,6 +9,7 @@ class MusiControl extends React.Component {
             bass: '%',
             volume: 0,
             state: '',
+            nice: '',
             repeat: false,
             single: false,
             disabled: false
@@ -16,9 +17,7 @@ class MusiControl extends React.Component {
     }
 
     componentDidMount() {
-        this.mpcinit()
-        this.treble()
-        this.bass()
+        this.refresh()
         document.title='🔉 🎛️ 🔊'
     }
     treble = () => {
@@ -79,8 +78,16 @@ class MusiControl extends React.Component {
                 this.setState({ state, volume, repeat, single })
             })
     }
+    nice = () => {
+        axios.get('api/control/mpc/nice')
+            .then(res => {
+                console.log(res)
+                this.setState({ nice: res.data })
+            })
+    }
     refresh = () => {
         this.mpcinit()
+        this.nice()
         this.bass()
         this.treble()
     }
@@ -172,6 +179,9 @@ class MusiControl extends React.Component {
                         Single
                     </button>
 
+                </div>
+                <div className="now-playing">
+                    {this.state.nice?this.state.nice:''}
                 </div>
 
             </div>

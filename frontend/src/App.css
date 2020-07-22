@@ -355,9 +355,10 @@ hr{
     border-radius: 5px;
     background: lightblue;
     margin: 10px auto;
+    margin-top: 0px;
     padding: 5px;
-    width: 90vw;
-    height: 90vh;
+    width: 95vw;
+    height: 95vh;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -453,7 +454,7 @@ hr{
     width: 30%;
     height: 80%;
 }
-.singles{
+.singles {
     margin-top: 5px;
     border: 2px solid darkblue;
     border-radius: 3px;
@@ -467,6 +468,16 @@ hr{
     font-size: 23px;
     height: 80%;
     margin: 5px;
+}
+.now-playing {
+    margin-top: 5px;
+    border: 2px solid darkblue;
+    border-radius: 3px;
+    width: 90%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
 }
 .on {
     color: green;
