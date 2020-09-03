@@ -37,5 +37,13 @@ app.get('/react/*', (req, res) => {
  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
 })
 
+app.use(express.static(path.join(__dirname, 'bora/build')));
+app.get('/bora/demo/*', (req, res) => {
+ res.sendFile(path.resolve(__dirname, 'bora', 'build', 'index.html'));
+})
+
+
+
+
 app.use('/media', serveIndex(path.join(__dirname, 'media'), {'view' : 'details'}))
 app.use('/media', express.static(path.join(__dirname, 'media')));
