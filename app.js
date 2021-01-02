@@ -15,11 +15,12 @@ app.use(bodyParser.json());
 app.listen(port, () => 
   console.log(`${new Date().toUTCString()} Server is running on port ${port}`)
 );
-app.get("/*", function (req, res, next) {
+app.get("/*", (req, res, next) => {
   console.log(`${new Date().toUTCString()} ${req.ip} ${req.rawHeaders[3]} ${req.ipInfo.city} => ${req.originalUrl}`);
   next()
 })
 app.get('/', (req, res) => {
+//	Let Them Hang
 //	res.sendStatus(304)
 })
 
@@ -47,3 +48,7 @@ app.get('/bora/demo/*', (req, res) => {
 
 app.use('/media', serveIndex(path.join(__dirname, 'media'), {'view' : 'details'}))
 app.use('/media', express.static(path.join(__dirname, 'media')));
+
+app.use( (req, res, next) => {
+//	Fake 404: Hang Time
+})
