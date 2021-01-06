@@ -17,8 +17,12 @@
     "nodemon": "^2.0.6"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@reduxjs/toolkit": "^1.5.0",
     "axios": "^0.19.2",
+=======
+    "axios": "^0.21.1",
+>>>>>>> 3f38abc8c54bc0427e7e810c58324248a9a82d78
     "body-parser": "^1.19.0",
     "concurrently": "^5.3.0",
     "create-react-app": "^3.4.1",
