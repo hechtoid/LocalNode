@@ -16,7 +16,7 @@ app.listen(port, () =>
   console.log(`${new Date().toUTCString()} Server is running on port ${port}`)
 );
 app.get("/*", (req, res, next) => {
-  console.log(`${new Date().toUTCString()} ${req.ip} ${req.rawHeaders[3]} ${req.ipInfo.city} => ${req.originalUrl}`);
+  console.log(`${new Date().toUTCString()} ${req.ipInfo.city}, ${req.ipInfo.region}, ${req.ipInfo.country} ${req.ip} ${req.rawHeaders[3]} => ${req.originalUrl}`);
   next()
 })
 app.get('/', (req, res) => {

@@ -14,7 +14,7 @@
 	}
 	form button{
 		width: 90%;
-
+        cursor: pointer;
 	}
 	#off {
 		color: red;
@@ -59,6 +59,10 @@
 		height: 11vh;
 		font-size: 36px;
 	}
+    #waves {
+        font-size: 55px;
+        height: 15vh;
+    }
 
 </style>
 
@@ -68,6 +72,12 @@
 <body>
 	
 	<div id="buttons">
+        <form method="get" action="/api/control/waves">
+            <button id="waves" onClick={waves}>
+                🌊
+            </button>
+        
+        </form>
 		<form method="get" action="/api/control/tv/off">
 			<button id="off" >OFF</button>
 		</form>
@@ -83,7 +93,11 @@
 		<form method="get" action="/api/control/rehome">
 			<button id="rehome" >🏡</button>
 		</form>
-	
+      
+        
+
+
+
 		<!-- <div id="alsa">
 			<div id="bass">
 				<form method="get" action="/control/alsa/bassup">

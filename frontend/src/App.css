@@ -488,3 +488,11 @@ hr{
 .red {
     color: red;
 }
+
+.home-control button {
+    font-size: 55px;
+    width: 123px;
+    height: 123px;
+    cursor: pointer;
+    margin: 25px;
+}
